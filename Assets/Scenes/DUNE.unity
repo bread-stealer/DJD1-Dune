@@ -291,7 +291,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
@@ -363,7 +363,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 2.8125
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -388,7 +388,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -3.95, y: -1.63, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraSystem
   player: {fileID: 584323368}
-  trapWidth: 4
+  trapWidth: 3
   trapHeight: 3
   fixedZ: -10
   followSpeed: 8
@@ -560,6 +560,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6255716062389946433, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807088447696599495, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -579,6 +583,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7632579518248877133, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
   m_PrefabInstance: {fileID: 5914500317196535366}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6332673925195917598
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2535887229447384094, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.60458
+      objectReference: {fileID: 0}
+    - target: {fileID: 2535887229447384094, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.86803
+      objectReference: {fileID: 0}
+    - target: {fileID: 2535887229447384094, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2535887229447384094, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2535887229447384094, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2535887229447384094, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2535887229447384094, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2535887229447384094, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2535887229447384094, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2535887229447384094, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611800105372282655, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: m_Name
+      value: Harkonnen
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -587,3 +648,4 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 512594241}
   - {fileID: 5914500317196535366}
+  - {fileID: 6332673925195917598}
