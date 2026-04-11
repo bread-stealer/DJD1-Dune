@@ -49,6 +49,12 @@ public class PlayerController : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
     }
 
+    public void TakeDamage(float amount)
+    {
+        // Player health system, to expand later
+        Debug.Log($"Player took {amount} damage");
+    }
+
     // An instruction to the compiler itself, processed before the code is compiled
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()

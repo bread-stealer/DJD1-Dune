@@ -16,11 +16,13 @@ public abstract class Enemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        // Only get Animator if it exists
         animator = visualRoot.GetComponent<Animator>();
 
         // Ask the child class for its specific stats
-        stats = CreateStats();
-        currentHealth = stats.MaxHealth;
+        //stats = CreateStats();
+        //currentHealth = stats.MaxHealth;
     }
 
     protected virtual void Update()
@@ -30,7 +32,7 @@ public abstract class Enemy : MonoBehaviour
     }
 
     // Each enemy defines its own stats
-    protected abstract EnemyStats CreateStates();
+    protected abstract EnemyStats CreateStats();
     // Each enemy defines its own behaviour loop
     protected abstract void EvaluateState();
 

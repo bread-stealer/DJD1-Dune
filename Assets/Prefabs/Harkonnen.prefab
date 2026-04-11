@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7659467739035910639}
   - component: {fileID: 9097534218570313505}
+  - component: {fileID: 2842356405733919081}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -91,6 +92,28 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!95 &2842356405733919081
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989335457708018878}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7611800105372282655
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,6 +125,7 @@ GameObject:
   - component: {fileID: 2535887229447384094}
   - component: {fileID: 3505123302637824950}
   - component: {fileID: 2317286819428576536}
+  - component: {fileID: 3070463161711439486}
   m_Layer: 0
   m_Name: Harkonnen
   m_TagString: Untagged
@@ -189,3 +213,27 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
+--- !u!114 &3070463161711439486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7611800105372282655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a967a1c4ca5ce44a347c6e71f672e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Harkonnen
+  visualRoot: {fileID: 0}
+  patrolPoints: []
+  patrolWaitTime: 1.5
+  health: 80
+  speed: 3
+  attackDamage: 15
+  attackRange: 1.5
+  detectionRange: 6
+  attackCooldown: 1
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0

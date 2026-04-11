@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &398325893 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7659467739035910639, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+  m_PrefabInstance: {fileID: 6332673925195917598}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &512594237
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,6 +517,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 386027501770324002, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 386027501770324002, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 737017293082857014, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
       propertyPath: jumpForce
       value: 7
@@ -520,6 +533,14 @@ PrefabInstance:
       propertyPath: groundCheck
       value: 
       objectReference: {fileID: 5914500317196535367}
+    - target: {fileID: 2464457150028687054, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548502882660749636, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4781152777214833253, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7
@@ -571,6 +592,10 @@ PrefabInstance:
     - target: {fileID: 8741495698356981415, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.947
+      objectReference: {fileID: 0}
+    - target: {fileID: 8952358567806336132, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -629,6 +654,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2535887229447384094, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842356405733919081, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842356405733919081, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e6a8ed0bd3a223a4a809121d96a6574b, type: 2}
+    - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: visualRoot
+      value: 
+      objectReference: {fileID: 398325893}
+    - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: attackRange
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: playerLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: patrolPoints.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7611800105372282655, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
