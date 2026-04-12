@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,10 @@ public class GameOverUI : MonoBehaviour
     [Header("Scene Names")]
     [SerializeField] private string gameSceneName = "Game";
     [SerializeField] private string mainMenuSceneName = "MainMenu";
+
+    [Header("Delay")]
+    // How long to wait after death before freezing and showing Game Over
+    [SerializeField] private float gameOverDelay = 1f;
 
     private PlayerHealth _playerHealth;
 
@@ -32,14 +37,22 @@ public class GameOverUI : MonoBehaviour
 
     private void HandlePlayerDeath()
     {
+        StartCoroutine(ShowGameOverDelayed());
+    }
+
+    private IEnumerator ShowGameOverDelayed()
+    {
+        // Wait for worm animation to finish before freezing
+        yield return new WaitForSeconds(gameOverDelay);
         gameOverPanel.SetActive(true);
-        Time.timeScale = 0f; // Freeze the game
+        Time.timeScale = 0f;
     }
 
     // Called by Restart button
     public void OnRestartPressed()
     {
-        Time.timeScale = 1f; // Always restore before loading
+        // Always restore time before loading
+        Time.timeScale = 1f;
         SceneManager.LoadScene(gameSceneName);
     }
 
