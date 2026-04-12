@@ -117,9 +117,16 @@ public class CameraSystem : MonoBehaviour
 
     private void ApplyPosition()
     {
-        transform.position = Vector3.Lerp(
+        Vector3 smoothed = Vector3.Lerp(
             transform.position, _targetPosition, followSpeed * Time.deltaTime
         );
+
+        // Round to nearest pixel to prevent sub-pixel jitter
+        float pixelsPerUnit = 128f;
+        smoothed.x = Mathf.Round(smoothed.x * pixelsPerUnit) / pixelsPerUnit;
+        smoothed.y = Mathf.Round(smoothed.y * pixelsPerUnit) / pixelsPerUnit;
+
+        transform.position = smoothed;
     }
 
 #if UNITY_EDITOR

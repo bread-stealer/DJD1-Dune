@@ -37,12 +37,16 @@ public abstract class Enemy : MonoBehaviour
     protected abstract void EvaluateState();
 
     // Called by weapon/player scripts from outside
-    public virtual void TakeDamage(float amount)
+    public virtual void TakeDamage(float amount, bool isHeavy = false)
     {
         if (isDead) return;
 
         currentHealth -= amount;
         OnDamaged();
+
+        // Spawn damage number above the enemy
+        if (DamageNumberSpawner.Instance != null)
+            DamageNumberSpawner.Instance.Spawn(amount, isHeavy, transform.position);
 
         if (currentHealth <= 0f)
             Die();

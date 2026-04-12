@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Harkonnen
   visualRoot: {fileID: 0}
+  heavyDamageMultiplier: 2
   patrolPoints: []
   patrolWaitTime: 1.5
   health: 80

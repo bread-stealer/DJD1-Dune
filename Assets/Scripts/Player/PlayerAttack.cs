@@ -66,7 +66,7 @@ public class PlayerAttack : MonoBehaviour
         {
             Enemy enemy = hits[i].GetComponentInParent<Enemy>();
             if (enemy != null)
-                enemy.TakeDamage(damage);
+                enemy.TakeDamage(damage, isHeavy);
         }
 
         // Keep hitbox active for the attack duration
