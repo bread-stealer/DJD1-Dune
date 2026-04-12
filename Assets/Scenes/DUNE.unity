@@ -505,6 +505,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1215652073 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4998896318268371450, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+  m_PrefabInstance: {fileID: 5914500317196535366}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5914500317196535366
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -540,6 +545,18 @@ PrefabInstance:
     - target: {fileID: 3548502882660749636, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580962303484334510, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: visualRoot
+      value: 
+      objectReference: {fileID: 1215652073}
+    - target: {fileID: 4580962303484334510, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: weaponHitbox
+      value: 
+      objectReference: {fileID: 5914500317196535368}
+    - target: {fileID: 4580962303484334510, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: enemyLayer.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 4781152777214833253, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
       propertyPath: m_LocalPosition.x
@@ -608,6 +625,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7632579518248877133, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
   m_PrefabInstance: {fileID: 5914500317196535366}
   m_PrefabAsset: {fileID: 0}
+--- !u!70 &5914500317196535368 stripped
+CapsuleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7651914366051683901, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+  m_PrefabInstance: {fileID: 5914500317196535366}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6332673925195917598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -616,6 +638,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1989335457708018878, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2535887229447384094, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.60458
@@ -670,7 +696,15 @@ PrefabInstance:
       objectReference: {fileID: 398325893}
     - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
       propertyPath: attackRange
-      value: 1.5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: attackCooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: detectionRange
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
       propertyPath: playerLayer.m_Bits
@@ -683,6 +717,10 @@ PrefabInstance:
     - target: {fileID: 7611800105372282655, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
       propertyPath: m_Name
       value: Harkonnen
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611800105372282655, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -75,11 +75,13 @@ public class Harkonnen : Enemy
     private void Attack()
     {
         rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-        animator.SetBool("isWalking", false);
+        if (animator != null) animator.SetBool("isWalking", false);
 
         if (Time.time - lastAttackTime < stats.AttackCooldown) return;
-
+        
         lastAttackTime = Time.time;
+        Debug.Log($"Attacked at {Time.time}");
+        
         if (animator != null) animator.SetTrigger("attack");
 
         if (PlayerInRange(stats.AttackRange))
