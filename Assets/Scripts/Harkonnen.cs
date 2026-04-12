@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Harkonnen : Enemy
 {
+    [Header("Attack Settings")]
+    [SerializeField] private float heavyDamageMultiplier = 2f;
+    
     [Header("Patrol")]
     [SerializeField] private Transform[] patrolPoints;
     [SerializeField] private float patrolWaitTime = 1.5f;
@@ -18,6 +21,7 @@ public class Harkonnen : Enemy
     [SerializeField] private LayerMask playerLayer;
 
     private Transform player;
+    private PlayerController _playerController; // cached in Awake
     private float lastAttackTime;
     private int currentPatrolIndex;
     private float patrolWaitTimer;
@@ -25,7 +29,17 @@ public class Harkonnen : Enemy
     protected override void Awake()
     {
         base.Awake();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            player = playerObj.transform;
+            _playerController = playerObj.GetComponent<PlayerController>();
+        }
+        else
+        {
+            Debug.LogError("[Harkonnen] No GameObject with tag 'Player' found in scene.");
+        }
     }
 
     protected virtual void Start()
@@ -74,18 +88,25 @@ public class Harkonnen : Enemy
 
     private void Attack()
     {
-        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-        if (animator != null) animator.SetBool("isWalking", false);
-
+        if (_playerController == null) return;
         if (Time.time - lastAttackTime < stats.AttackCooldown) return;
-        
-        lastAttackTime = Time.time;
-        Debug.Log($"Attacked at {Time.time}");
-        
-        if (animator != null) animator.SetTrigger("attack");
 
-        if (PlayerInRange(stats.AttackRange))
-            player.GetComponent<PlayerController>().TakeDamage(stats.Damage);
+        lastAttackTime = Time.time;
+
+        // Light attack — fast, shield blocks it
+        var lightAttack = new AttackData(
+            damage: stats.Damage,
+            isShieldPenetrating: false
+        );
+
+        // Heavy attack — slow blade, pierces shield
+        var heavyAttack = new AttackData(
+            damage: stats.Damage * heavyDamageMultiplier,
+            isShieldPenetrating: true
+        );
+
+        // Choose based on attack state when animations are in
+        _playerController.TakeDamage(lightAttack);
     }
 
     private void Patrol()
