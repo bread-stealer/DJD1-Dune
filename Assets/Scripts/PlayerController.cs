@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D _rb;
     private PlayerShield _shield;
+    private PlayerHealth _health;
 
     private void Awake()
     {

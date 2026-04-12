@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7499033151824057053}
   - component: {fileID: 737017293082857014}
   - component: {fileID: 4496305112314922510}
+  - component: {fileID: 296680174611229351}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -137,10 +138,24 @@ MonoBehaviour:
   immunityWindowDuration: 0.3
   cooldownDuration: 3
   activationParticles: {fileID: 0}
+  auraParticles: {fileID: 0}
   hitParticles: {fileID: 0}
   playerSpriteRenderer: {fileID: 0}
   hitFlashColor: {r: 0.5, g: 0.8, b: 1, a: 1}
   hitFlashDuration: 0.1
+--- !u!114 &296680174611229351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386027501770324002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61503c0727f538a42aaa3afdbcb1720d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  maxHealth: 100
 --- !u!1 &1624770637507864105
 GameObject:
   m_ObjectHideFlags: 0
