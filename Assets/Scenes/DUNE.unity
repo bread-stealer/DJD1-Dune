@@ -5617,6 +5617,10 @@ PrefabInstance:
       value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 1700236145123076936, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1700236145123076936, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
       propertyPath: m_Interpolate
       value: 1
       objectReference: {fileID: 0}
@@ -5744,6 +5748,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7499033151824057053, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 6e6417763ab998d4b9bf03c5bad51a86, type: 2}
     - target: {fileID: 7807088447696599495, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
       propertyPath: m_Color.a
       value: 0

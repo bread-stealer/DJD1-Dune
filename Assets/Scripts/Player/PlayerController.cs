@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
+        float horizontal = Input.GetAxis("Horizontal");
         _rb.linearVelocity = new Vector2(horizontal * moveSpeed, _rb.linearVelocity.y);
 
         if (horizontal != 0f)

@@ -71,7 +71,7 @@ public class Sandworm : MonoBehaviour
         {
             _countdownTimer = emergeDelay;
             _state = WormState.Countdown;
-            Debug.Log("[Sandworm] Player entered area — countdown started.");
+            Debug.Log("[Sandworm] Player entered area > countdown started.");
         }
     }
 
@@ -83,7 +83,7 @@ public class Sandworm : MonoBehaviour
         if (distance > escapeRadius)
         {
             _state = WormState.Waiting;
-            Debug.Log("[Sandworm] Player escaped — resetting.");
+            Debug.Log("[Sandworm] Player escaped, resetting.");
             return;
         }
 
@@ -100,7 +100,7 @@ public class Sandworm : MonoBehaviour
         Vector3 emergePos = new Vector3(_player.position.x, transform.position.y, transform.position.z);
         transform.position = emergePos;
 
-        // Warning phase — camera shake before burst
+        // Warning phase > camera shake before burst
         if (cameraShake != null)
             cameraShake.StartShake(warningDuration, 0.3f);
 
@@ -109,12 +109,12 @@ public class Sandworm : MonoBehaviour
 
         yield return new WaitForSeconds(warningDuration);
 
-        // Emerge phase — worm bursts up from ground
+        // Emerge phase > worm bursts up from ground
         _state = WormState.Emerging;
         if (wormSprite != null)
             wormSprite.enabled = true;
 
-        // WormHead collider handles the kill — no distance check needed here
+        // WormHead collider handles the kill > no distance check needed here
         yield return StartCoroutine(BurstAnimation());
 
         yield return new WaitForSeconds(burstDuration);
@@ -130,7 +130,7 @@ public class Sandworm : MonoBehaviour
         // Wait then reset so worm can trigger again
         yield return new WaitForSeconds(disappearDelay);
         _state = WormState.Waiting;
-        Debug.Log("[Sandworm] Worm reset — waiting.");
+        Debug.Log("[Sandworm] Worm reset waiting.");
     }
 
     private IEnumerator BurstAnimation()
@@ -143,7 +143,7 @@ public class Sandworm : MonoBehaviour
         float elapsed = 0f;
         float halfDuration = burstDuration * 0.5f;
 
-        // Rise up — fast at start, slows at peak
+        // Rise up > fast at start, slows at peak
         while (elapsed < halfDuration)
         {
             elapsed += Time.deltaTime;
@@ -157,7 +157,7 @@ public class Sandworm : MonoBehaviour
 
         elapsed = 0f;
 
-        // Fall back down — slow at start, fast at bottom
+        // Fall back down > slow at start, fast at bottom
         while (elapsed < halfDuration)
         {
             elapsed += Time.deltaTime;

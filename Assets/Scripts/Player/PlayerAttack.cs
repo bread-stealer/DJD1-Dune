@@ -23,7 +23,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Awake()
     {
-        // Hitbox starts disabled — only active during an attack
+        // Hitbox starts disabled > only active during an attack
         weaponHitbox.enabled = false;
     }
 

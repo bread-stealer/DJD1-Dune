@@ -21,7 +21,7 @@ public class Harkonnen : Enemy
     [SerializeField] private LayerMask playerLayer;
 
     private Transform player;
-    private PlayerController _playerController; // cached in Awake
+    private PlayerController _playerController;
     private float lastAttackTime;
     private int currentPatrolIndex;
     private float patrolWaitTimer;
@@ -93,13 +93,13 @@ public class Harkonnen : Enemy
 
         lastAttackTime = Time.time;
 
-        // Light attack — fast, shield blocks it
+        // Light attack > fast, shield blocks it
         var lightAttack = new AttackData(
             damage: stats.Damage,
             isShieldPenetrating: false
         );
 
-        // Heavy attack — slow blade, pierces shield
+        // Heavy attack > slow blade, pierces shield
         var heavyAttack = new AttackData(
             damage: stats.Damage * heavyDamageMultiplier,
             isShieldPenetrating: true
@@ -111,7 +111,7 @@ public class Harkonnen : Enemy
 
     private void Patrol()
     {
-        // No patrol points assigned — just idle
+        // No patrol points assigned > just idle
         if (patrolPoints == null || patrolPoints.Length == 0)
         {
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
@@ -135,7 +135,7 @@ public class Harkonnen : Enemy
         rb.linearVelocity = new Vector2(direction * stats.MoveSpeed, rb.linearVelocity.y);
         if (animator != null) animator.SetBool("isWalking", true);
 
-        // Reached patrol point — move to next
+        // Reached patrol point, move to next
         if (Vector2.Distance(transform.position, target.position) < 0.2f)
         {
             currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;

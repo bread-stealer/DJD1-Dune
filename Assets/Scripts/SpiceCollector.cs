@@ -91,7 +91,7 @@ public class SpiceCollector : MonoBehaviour
         if (promptObject != null)
             promptObject.SetActive(false);
 
-        // Visual feedback — grey out the collector
+        // Visual feedback > grey out the collector
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr != null)
             sr.color = new Color(0.4f, 0.4f, 0.4f);

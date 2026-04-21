@@ -12,7 +12,7 @@ public class WinDoor : MonoBehaviour
 
     private void Awake()
     {
-        // Must be a trigger — not a physics collider
+        // Must be a trigger > not a physics collider
         GetComponent<Collider2D>().isTrigger = true;
 
         if (promptObject != null)

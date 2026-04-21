@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// Singleton — spawn damage numbers from anywhere
+// Singleton > spawn damage numbers from anywhere
 public class DamageNumberSpawner : MonoBehaviour
 {
     public static DamageNumberSpawner Instance { get; private set; }

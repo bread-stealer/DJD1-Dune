@@ -92,15 +92,14 @@ public class CameraSystem : MonoBehaviour
         Vector3 camPos = _targetPosition;
         Vector3 playerPos = player.position;
 
-        // Horizontal trap — symmetric
+        // Horizontal trap
         float deltaX = playerPos.x - camPos.x;
         if (deltaX > HalfWidth)
             camPos.x = playerPos.x - HalfWidth;
         else if (deltaX < -HalfWidth)
             camPos.x = playerPos.x + HalfWidth;
 
-        // Vertical trap — asymmetric
-        // Tighter above (follows up fast), looser below (doesn't drop immediately)
+        // Vertical trap
         float deltaY = playerPos.y - (camPos.y - _lookaheadOffset);
         if (deltaY > trapUp)
             camPos.y = playerPos.y - trapUp + _lookaheadOffset;
