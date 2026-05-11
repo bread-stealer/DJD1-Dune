@@ -16,21 +16,28 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     private Rigidbody2D _rb;
+    private Animator _animator;
     private PlayerShield _shield;
     private PlayerHealth _health;
 
+    // Cached animator parameter hashes
+    private static readonly int SpeedHash = Animator.StringToHash("Speed");
+    private static readonly int IsGroundedHash = Animator.StringToHash("IsGrounded");
+
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        _rb       = GetComponent<Rigidbody2D>();
         _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        _shield = GetComponent<PlayerShield>();
-        _health = GetComponent<PlayerHealth>();
+        _animator = GetComponentInChildren<Animator>();
+        _shield   = GetComponent<PlayerShield>();
+        _health   = GetComponent<PlayerHealth>();
     }
 
-    void Update()
+    private void Update()
     {
         Move();
         Jump();
+        UpdateAnimations();
     }
 
     private void Move()
@@ -45,7 +52,13 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         if (Input.GetButtonDown("Jump") && IsGrounded())
-            _rb.linearVelocity = new Vector2(_rb.linearVelocity.x , jumpForce);
+            _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);
+    }
+
+    private void UpdateAnimations()
+    {
+        _animator.SetFloat(SpeedHash,      Mathf.Abs(_rb.linearVelocity.x));
+        _animator.SetBool(IsGroundedHash,  IsGrounded());
     }
 
     private bool IsGrounded()
@@ -76,5 +89,4 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
 #endif
-
 }

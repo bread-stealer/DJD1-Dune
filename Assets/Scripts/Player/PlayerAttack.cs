@@ -4,7 +4,6 @@ public class PlayerAttack : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Collider2D weaponHitbox;
-    [SerializeField] private Transform visualRoot;
 
     [Header("Light Attack")]
     [SerializeField] private float lightDamage = 3f;
@@ -21,9 +20,13 @@ public class PlayerAttack : MonoBehaviour
     private float lastAttackTime;
     private bool isAttacking;
 
+    private Animator _animator;
+    private static readonly int AttackHash = Animator.StringToHash("Attack");
+
     private void Awake()
     {
         // Hitbox starts disabled > only active during an attack
+        _animator = GetComponentInChildren<Animator>();
         weaponHitbox.enabled = false;
     }
 
@@ -54,6 +57,8 @@ public class PlayerAttack : MonoBehaviour
         weaponHitbox.enabled = true;
 
         UnityEngine.Debug.Log(isHeavy ? $"Heavy Attack! Damage: {damage}" : $"Light Attack! Damage: {damage}");
+
+        _animator.SetTrigger(AttackHash);
 
         // Detect enemies hit during this attack window
         ContactFilter2D filter = new ContactFilter2D();
