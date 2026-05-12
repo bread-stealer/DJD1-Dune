@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7659467739035910639}
   - component: {fileID: 9097534218570313505}
-  - component: {fileID: 2842356405733919081}
+  - component: {fileID: 6694419959381489485}
   m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
@@ -78,12 +78,12 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1093231661
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 78927a8a9812abf43a24005aa0895327, type: 3}
-  m_Color: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 1}
+  m_Sprite: {fileID: -685332185738703776, guid: e535984c9da306d41be9921f8ab314dc, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -92,7 +92,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!95 &2842356405733919081
+--- !u!95 &6694419959381489485
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -100,9 +100,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989335457708018878}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e6a8ed0bd3a223a4a809121d96a6574b, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -186,7 +186,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6e6417763ab998d4b9bf03c5bad51a86, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -210,8 +210,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: -0.091685295, y: 0.006010294}
+  m_Size: {x: 0.4873104, y: 0.9158559}
   m_Direction: 0
 --- !u!114 &3070463161711439486
 MonoBehaviour:
@@ -226,11 +226,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Harkonnen
   visualRoot: {fileID: 7659467739035910639}
-  heavyDamageMultiplier: 2
-  patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  patrolWaitTime: 0.5
+  heavyDamageMultiplier: 1
+  wallCheckDistance: 0.3
+  ledgeCheckDistance: 0.5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
   health: 80
   speed: 3
   attackDamage: 15

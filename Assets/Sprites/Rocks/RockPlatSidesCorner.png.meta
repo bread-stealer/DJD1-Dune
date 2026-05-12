@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2bf6035bd70b4e741addecebb7013f60
+guid: 60444dd3d172f314c842bff4d4a42052
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7384652975981370220
-    second: Final_6_0
+      213: -7743289091291481099
+    second: RockPlatSidesCorner_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -72,8 +72,8 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 32
-    resizeAlgorithm: 1
+    maxTextureSize: 128
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Final_6_0
+      name: RockPlatSidesCorner_0
       rect:
         serializedVersion: 2
-        x: 41
-        y: 25
-        width: 83
-        height: 116
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c6b96ee81ce8b7660800000000000000
-      internalID: 7384652975981370220
+      spriteID: 5fbf960e89f4a8490800000000000000
+      internalID: -7743289091291481099
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Final_6_0: 7384652975981370220
+      RockPlatSidesCorner_0: -7743289091291481099
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

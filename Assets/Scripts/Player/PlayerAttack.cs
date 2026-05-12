@@ -17,38 +17,42 @@ public class PlayerAttack : MonoBehaviour
     [Header("Layer")]
     [SerializeField] private LayerMask enemyLayer;
 
-    private float lastAttackTime;
+    private float keyHeldTime;
     private bool isAttacking;
+    private bool isCharging;
 
     private Animator _animator;
     private static readonly int AttackHash = Animator.StringToHash("Attack");
 
     private void Awake()
     {
-        // Hitbox starts disabled > only active during an attack
         _animator = GetComponentInChildren<Animator>();
         weaponHitbox.enabled = false;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            TriggerAttack();
-    }
-
-    private void TriggerAttack()
-    {
         if (isAttacking) return;
 
-        float timeSinceLastAttack = Time.time - lastAttackTime;
-        bool isHeavy = timeSinceLastAttack >= heavyAttackThreshold;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            isCharging = true;
+            keyHeldTime = 0f;
+        }
 
-        if (isHeavy)
-            StartCoroutine(PerformAttack(heavyDamage, heavyAttackDuration, true));
-        else
-            StartCoroutine(PerformAttack(lightDamage, lightAttackDuration, false));
+        if (Input.GetKey(KeyCode.Space) && isCharging)
+            keyHeldTime += Time.deltaTime;
 
-        lastAttackTime = Time.time;
+        if (Input.GetKeyUp(KeyCode.Space) && isCharging)
+        {
+            isCharging = false;
+            bool isHeavy = keyHeldTime >= heavyAttackThreshold;
+
+            if (isHeavy)
+                StartCoroutine(PerformAttack(heavyDamage, heavyAttackDuration, true));
+            else
+                StartCoroutine(PerformAttack(lightDamage, lightAttackDuration, false));
+        }
     }
 
     private System.Collections.IEnumerator PerformAttack(float damage, float duration, bool isHeavy)
@@ -56,11 +60,10 @@ public class PlayerAttack : MonoBehaviour
         isAttacking = true;
         weaponHitbox.enabled = true;
 
-        UnityEngine.Debug.Log(isHeavy ? $"Heavy Attack! Damage: {damage}" : $"Light Attack! Damage: {damage}");
+        Debug.Log(isHeavy ? $"Heavy Attack! Damage: {damage}" : $"Light Attack! Damage: {damage}");
 
         _animator.SetTrigger(AttackHash);
 
-        // Detect enemies hit during this attack window
         ContactFilter2D filter = new ContactFilter2D();
         filter.SetLayerMask(enemyLayer);
 
@@ -74,7 +77,6 @@ public class PlayerAttack : MonoBehaviour
                 enemy.TakeDamage(damage, isHeavy);
         }
 
-        // Keep hitbox active for the attack duration
         yield return new WaitForSeconds(duration);
 
         weaponHitbox.enabled = false;

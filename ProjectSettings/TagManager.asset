@@ -14,9 +14,9 @@ TagManager:
   - Ground
   - Player
   - Enemy
+  - Sandworm
+  - SecretZone
   - Background
-  - 
-  - 
   - 
   - 
   - 
@@ -44,11 +44,20 @@ TagManager:
   - name: Background
     uniqueID: 1119714389
     locked: 0
+  - name: Discovered
+    uniqueID: 3803639235
+    locked: 0
   - name: Gameplay
     uniqueID: 1139422453
     locked: 0
+  - name: Hidden
+    uniqueID: 1525141625
+    locked: 0
   - name: Environment
     uniqueID: 3531917831
+    locked: 0
+  - name: Enemy
+    uniqueID: 3201735635
     locked: 0
   - name: Player
     uniqueID: 1446018647
