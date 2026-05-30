@@ -17646,7 +17646,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1091426304}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1941771715}
+        m_TargetAssemblyTypeName: GameOverUI, Assembly-CSharp
+        m_MethodName: OnMainMenuPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1091426304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17911,7 +17923,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1161509199}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1941771721}
+        m_TargetAssemblyTypeName: WinUI, Assembly-CSharp
+        m_MethodName: OnMainMenuPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1161509199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18033,21 +18057,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1941771715}
-        m_TargetAssemblyTypeName: GameOverUI, Assembly-CSharp
-        m_MethodName: OnRestartPressed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1941771715}
-        m_TargetAssemblyTypeName: GameOverUI, Assembly-CSharp
-        m_MethodName: OnMainMenuPressed
+      - m_Target: {fileID: 1941771721}
+        m_TargetAssemblyTypeName: WinUI, Assembly-CSharp
+        m_MethodName: OnNextLevelPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19311,18 +19323,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1941771715}
-        m_TargetAssemblyTypeName: GameOverUI, Assembly-CSharp
-        m_MethodName: OnMainMenuPressed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1709812044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19621,8 +19621,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameOverUI
   gameOverPanel: {fileID: 786011610}
-  gameSceneName: DUNE
-  mainMenuSceneName: DUNE
+  gameScene:
+    sceneAsset: {fileID: 102900000, guid: 8c9cfa26abfee488c85f1582747f6a02, type: 3}
+    sceneName: DUNE
+  mainMenuScene:
+    sceneAsset: {fileID: 102900000, guid: 80b196f63cdb5c542967792c4e5c0932, type: 3}
+    sceneName: MainMenu
   gameOverDelay: 1
 --- !u!114 &1941771716
 MonoBehaviour:
@@ -19737,8 +19741,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WinUI
   winPanel: {fileID: 1610951737}
-  nextSceneName: DUNE
-  mainMenuSceneName: DUNE
+  nextLevelScene:
+    sceneAsset: {fileID: 102900000, guid: 8c9cfa26abfee488c85f1582747f6a02, type: 3}
+    sceneName: DUNE
+  mainMenuScene:
+    sceneAsset: {fileID: 102900000, guid: 80b196f63cdb5c542967792c4e5c0932, type: 3}
+    sceneName: MainMenu
 --- !u!1 &2017932870
 GameObject:
   m_ObjectHideFlags: 0
