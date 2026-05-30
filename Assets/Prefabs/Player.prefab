@@ -5099,6 +5099,7 @@ GameObject:
   - component: {fileID: 7443318682527766639}
   - component: {fileID: 4508949242300563202}
   - component: {fileID: 8233037481138075125}
+  - component: {fileID: 1542724386618955030}
   m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
@@ -5206,6 +5207,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1542724386618955030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2464457150028687054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee3a3dd8521c0041bcf6d323fe105ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimEventBridge
 --- !u!1 &3370324853061789363
 GameObject:
   m_ObjectHideFlags: 0
