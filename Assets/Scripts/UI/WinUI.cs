@@ -6,9 +6,15 @@ public class WinUI : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject winPanel;
 
-    [Header("Scene Names")]
-    [SerializeField] private string nextSceneName = "NextLevel";
-    [SerializeField] private string mainMenuSceneName = "MainMenu";
+    [Header("Scenes")]
+    [SerializeField] private SceneRef nextLevelScene;
+    [SerializeField] private SceneRef mainMenuScene;
+
+    private void OnValidate()
+    {
+        nextLevelScene?.OnValidate();
+        mainMenuScene?.OnValidate();
+    }
 
     private void Start()
     {
@@ -26,13 +32,13 @@ public class WinUI : MonoBehaviour
     public void OnNextLevelPressed()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(nextSceneName);
+        SceneManager.LoadScene(nextLevelScene.SceneName);
     }
 
     // Called by Main Menu button
     public void OnMainMenuPressed()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(mainMenuSceneName);
+        SceneManager.LoadScene(mainMenuScene.SceneName);
     }
 }

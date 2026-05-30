@@ -7,15 +7,21 @@ public class GameOverUI : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject gameOverPanel;
 
-    [Header("Scene Names")]
-    [SerializeField] private string gameSceneName = "Game";
-    [SerializeField] private string mainMenuSceneName = "MainMenu";
+    [Header("Scenes")]
+    [SerializeField] private SceneRef gameScene;
+    [SerializeField] private SceneRef mainMenuScene;
 
     [Header("Delay")]
     // How long to wait after death before freezing and showing Game Over
     [SerializeField] private float gameOverDelay = 1f;
 
     private PlayerHealth _playerHealth;
+
+    private void OnValidate()
+    {
+        gameScene?.OnValidate();
+        mainMenuScene?.OnValidate();
+    }
 
     private void Start()
     {
@@ -53,13 +59,13 @@ public class GameOverUI : MonoBehaviour
     {
         // Always restore time before loading
         Time.timeScale = 1f;
-        SceneManager.LoadScene(gameSceneName);
+        SceneManager.LoadScene(gameScene.SceneName);
     }
 
     // Called by Main Menu button
     public void OnMainMenuPressed()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(mainMenuSceneName);
+        SceneManager.LoadScene(mainMenuScene.SceneName);
     }
 }
