@@ -18,7 +18,13 @@ public class Sandworm : Enemy
     [Header("References")]
     [SerializeField] private SpriteRenderer wormSprite;
     [SerializeField] private ParticleSystem sandParticles;
-    [SerializeField] private CameraShake    cameraShake;
+    [SerializeField] private CameraShake cameraShake;
+    [SerializeField] private WormHead wormHead;
+
+    // Assign rocky platform layers here > worm won't trigger if player is standing on these
+    [Header("Safe Ground")]
+    [SerializeField] private LayerMask safeGroundLayer;
+    [SerializeField] private float groundCheckDistance = 0.3f;
 
     [Header("Stats")]
     [SerializeField] private LayerMask playerLayer;
@@ -33,7 +39,7 @@ public class Sandworm : Enemy
 
     protected override EnemyStats CreateStats()
     {
-        // Sandworm has no combat stats > instakill is handled separately
+        // Sandworm has no combat stats > instakill is handled by WormHead separately
         return new EnemyStats(
             maxHealth: 1f,
             moveSpeed: 0f,
@@ -55,6 +61,10 @@ public class Sandworm : Enemy
         // Worm starts hidden underground
         if (wormSprite != null)
             wormSprite.enabled = false;
+
+        // WormHead kill zone starts inactive
+        if (wormHead != null)
+            wormHead.SetActive(false);
     }
 
     private void Start()
@@ -82,35 +92,27 @@ public class Sandworm : Enemy
             case WormState.Countdown:
                 TickCountdown();
                 break;
-
-            // Warning, Emerging, Underground handled by coroutines
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private bool PlayerOnSafeGround()
     {
-        // Only damage during the emerging phase
-        if (_state != WormState.Emerging) return;
-
-        PlayerController player = other.GetComponent<PlayerController>();
-        if (player == null) return;
-
-        PlayerHealth health = other.GetComponent<PlayerHealth>();
-        if (health == null) return;
-
-        // Sandworm always kills instantly > shield never blocks it
-        var wormAttack = new AttackData(
-            damage: health.MaxHealth,
-            isShieldPenetrating: true
+        // Raycast downward from the player to check if they're standing on a safe layer
+        RaycastHit2D hit = Physics2D.Raycast(
+            _player.position,
+            Vector2.down,
+            groundCheckDistance,
+            safeGroundLayer
         );
-        player.TakeDamage(wormAttack);
-        Debug.Log("[Sandworm] Player devoured!");
+        return hit.collider != null;
     }
 
     private void CheckPlayerInRange()
     {
         float distance = Vector2.Distance(transform.position, _player.position);
-        if (distance <= triggerRadius)
+
+        // Only trigger if player is close and not standing on safe ground
+        if (distance <= triggerRadius && !PlayerOnSafeGround())
         {
             _countdownTimer = emergeDelay;
             _state = WormState.Countdown;
@@ -122,8 +124,8 @@ public class Sandworm : Enemy
     {
         float distance = Vector2.Distance(transform.position, _player.position);
 
-        // If player escapes the trigger radius, reset
-        if (distance > escapeRadius)
+        // If player escapes or reaches safe ground, reset
+        if (distance > escapeRadius || PlayerOnSafeGround())
         {
             _state = WormState.Waiting;
             Debug.Log("[Sandworm] Player escaped, resetting.");
@@ -156,10 +158,18 @@ public class Sandworm : Enemy
         wormSprite.transform.localScale = _originalSpriteScale; // Reset flip before emerging
         wormSprite.enabled = true;
 
-        // OnTriggerEnter2D handles the kill while state is Emerging
+        // Activate WormHead kill zone for the duration of the burst
+        if (wormHead != null)
+            wormHead.SetActive(true);
+
+        // OnTriggerEnter2D on WormHead handles the kill while state is Emerging
         yield return StartCoroutine(BurstAnimation());
 
         yield return new WaitForSeconds(burstDuration);
+
+        // Deactivate kill zone before burrowing back
+        if (wormHead != null)
+            wormHead.SetActive(false);
 
         // Burrow back underground
         _state = WormState.Underground;
@@ -171,7 +181,7 @@ public class Sandworm : Enemy
         // Wait then reset so worm can trigger again
         yield return new WaitForSeconds(disappearDelay);
         _state = WormState.Waiting;
-        Debug.Log("[Sandworm] Worm reset waiting.");
+        Debug.Log("[Sandworm] Worm reset, waiting.");
     }
 
     private IEnumerator BurstAnimation()
@@ -199,7 +209,7 @@ public class Sandworm : Enemy
         {
             elapsed += Time.deltaTime;
             float t = elapsed / halfDuration;
-            float easedT = Mathf.Pow(t, 2f); // Ease in
+            float easedT = Mathf.Pow(t, 2f);
             transform.position = Vector3.Lerp(peakPosition, groundPosition, easedT);
             yield return null;
         }
