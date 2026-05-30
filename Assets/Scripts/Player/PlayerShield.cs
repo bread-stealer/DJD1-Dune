@@ -121,7 +121,7 @@ public class PlayerShield : MonoBehaviour
 
     private void PlayParticles(ParticleSystem ps)
     {
-        if (ps != null) return;
+        if (ps == null) return;
         ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         ps.Play();
     }
