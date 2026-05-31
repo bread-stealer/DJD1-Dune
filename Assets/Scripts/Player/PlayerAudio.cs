@@ -16,6 +16,18 @@ public class PlayerAudio : MonoBehaviour
     [SerializeField] private SFXClip shieldBlockClip;
     [SerializeField] private SFXClip shieldBrokenClip;
 
+    [Header("Footstep Clips")]
+    [SerializeField] private SFXClip sandFootstepClip;
+    [SerializeField] private SFXClip rockFootstepClip;
+
+    [Header("Footstep Detection")]
+    [SerializeField] private LayerMask sandLayer;
+    [SerializeField] private LayerMask rockLayer;
+    [SerializeField] private float groundRayDistance = 0.3f;
+
+    [Header("References")]
+    [SerializeField] private AnimEventBridge animEventBridge;
+
     private PlayerHealth _health;
     private PlayerShield _shield;
 
@@ -33,6 +45,9 @@ public class PlayerAudio : MonoBehaviour
         _shield.OnShieldDeactivated += HandleShieldOff;
         _shield.OnShieldBlocked += HandleShieldBlock;
         _shield.OnShieldBroken += HandleShieldBroken;
+
+        if (animEventBridge != null)
+            animEventBridge.OnFootstepEvent += HandleFootstep;
     }
 
     private void OnDisable()
@@ -43,6 +58,23 @@ public class PlayerAudio : MonoBehaviour
         _shield.OnShieldDeactivated -= HandleShieldOff;
         _shield.OnShieldBlocked -= HandleShieldBlock;
         _shield.OnShieldBroken -= HandleShieldBroken;
+
+        if (animEventBridge != null)
+            animEventBridge.OnFootstepEvent -= HandleFootstep;
+    }
+
+    private void HandleFootstep()
+    {
+        RaycastHit2D sandHit = Physics2D.Raycast(transform.position, Vector2.down, groundRayDistance, sandLayer);
+        if (sandHit.collider != null)
+        {
+            AudioManager.Instance?.PlaySFX(sandFootstepClip.clip, sandFootstepClip.volume);
+            return;
+        }
+
+        RaycastHit2D rockHit = Physics2D.Raycast(transform.position, Vector2.down, groundRayDistance, rockLayer);
+        if (rockHit.collider != null)
+            AudioManager.Instance?.PlaySFX(rockFootstepClip.clip, rockFootstepClip.volume);
     }
 
     // Called by Animation Event on the attack animation
