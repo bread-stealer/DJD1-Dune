@@ -32,6 +32,11 @@ public class Harkonnen : Enemy
     private float lastFlipTime;
     private float patrolDirection = 1f;
 
+    // Cached animator parameter hashes
+    private static readonly int IsWalkingHash = Animator.StringToHash("IsWalking");
+    private static readonly int IsAttackingHash = Animator.StringToHash("IsAttacking");
+    private static readonly int IsHitHash = Animator.StringToHash("IsHit");
+
     protected override void Awake()
     {
         base.Awake();
@@ -87,8 +92,8 @@ public class Harkonnen : Enemy
 
         if (animator != null)
         {
-            animator.SetBool("IsWalking", true);
-            animator.SetBool("IsAttacking", false);
+            animator.SetBool(IsWalkingHash, true);
+            animator.SetBool(IsAttackingHash, false);
         }
     }
 
@@ -100,8 +105,8 @@ public class Harkonnen : Enemy
 
         if (animator != null)
         {
-            animator.SetBool("IsWalking", false);
-            animator.SetBool("IsAttacking", true);
+            animator.SetBool(IsWalkingHash, false);
+            animator.SetBool(IsAttackingHash, true);
         }
 
         rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
@@ -126,8 +131,8 @@ public class Harkonnen : Enemy
     {
         if (animator != null)
         {
-            animator.SetBool("IsAttacking", false);
-            animator.SetBool("IsWalking", true);
+            animator.SetBool(IsAttackingHash, false);
+            animator.SetBool(IsWalkingHash, true);
         }
 
         // Wall check
@@ -162,7 +167,7 @@ public class Harkonnen : Enemy
     protected override void OnDamaged()
     {
         if (animator != null)
-            animator.SetTrigger("IsHit");
+            animator.SetTrigger(IsHitHash);
     }
 
     protected override void OnDeath()
