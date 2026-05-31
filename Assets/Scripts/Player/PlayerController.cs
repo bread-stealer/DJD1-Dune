@@ -17,6 +17,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float groundCheckRadius = 0.1f;
     [SerializeField] private LayerMask groundLayer;
 
+    [Header("Hit Feedback")]
+    [SerializeField] private CameraShake cameraShake;
+    [SerializeField] private float shakeIntensity = 0.15f;
+    [SerializeField] private float shakeDuration = 0.15f;
+    [SerializeField] private float hitStopDuration = 0.05f;
+
     private Rigidbody2D _rb;
     private Animator _animator;
     private PlayerShield _shield;
@@ -98,7 +104,11 @@ public class PlayerController : MonoBehaviour
         if (_health != null)
             _health.TakeDamage(attack.Damage);
 
-        Debug.Log($"Player took {attack.Damage} damage");
+        if (cameraShake != null)
+            cameraShake.StartShake(shakeDuration, shakeIntensity);
+
+        if (HitStop.Instance != null)
+            HitStop.Instance.Stop(hitStopDuration);
     }
 
 #if UNITY_EDITOR
