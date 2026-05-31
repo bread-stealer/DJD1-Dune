@@ -21,9 +21,13 @@ public class Harkonnen : Enemy
     [Header("Detection")]
     [SerializeField] private LayerMask playerLayer;
 
+    [Header("Patrol Settings")]
+    [SerializeField] private float flipCooldown = 0.3f;
+
     private Transform player;
     private PlayerController _playerController;
     private float lastAttackTime;
+    private float lastFlipTime;
     private float patrolDirection = 1f;
 
     protected override void Awake()
@@ -93,6 +97,8 @@ public class Harkonnen : Enemy
     {
         if (_playerController == null) return;
 
+        FacePlayer(player);
+
         if (animator != null)
         {
             animator.SetBool("IsWalking", false);
@@ -142,9 +148,13 @@ public class Harkonnen : Enemy
             groundLayer
         );
 
-        // Flip if wall detected or ledge ahead is gone
-        if (wallHit.collider != null || ledgeHit.collider == null)
+        // Flip if wall detected or ledge ahead is gone, with cooldown to prevent rapid flipping
+        bool shouldFlip = wallHit.collider != null || ledgeHit.collider == null;
+        if (shouldFlip && Time.time - lastFlipTime >= flipCooldown)
+        {
             patrolDirection *= -1f;
+            lastFlipTime = Time.time;
+        }
 
         rb.linearVelocity = new Vector2(patrolDirection * stats.MoveSpeed, rb.linearVelocity.y);
         visualRoot.localScale = new Vector3(patrolDirection, 1f, 1f);
