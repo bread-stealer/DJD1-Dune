@@ -359,6 +359,10 @@ PrefabInstance:
       value: 1.84
       objectReference: {fileID: 0}
     - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: _playerController
+      value: 
+      objectReference: {fileID: 5914500317196535378}
+    - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
       propertyPath: groundLayer.m_Bits
       value: 64
       objectReference: {fileID: 0}
@@ -1835,6 +1839,7 @@ GameObject:
   - component: {fileID: 125524246}
   - component: {fileID: 125524245}
   - component: {fileID: 125524247}
+  - component: {fileID: 125524248}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1882,6 +1887,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageNumberSpawner
   damageNumberPrefab: {fileID: 1842155644435774438, guid: 9955504f8ff34a74a8ea68491c4f750d, type: 3}
+--- !u!114 &125524248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125524244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc07f56da600288458cba8019e70581b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitStop
 --- !u!1001 &131513256
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2194,7 +2211,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 11.47168, y: 513.676}
-  m_SizeDelta: {x: 350, y: 25}
+  m_SizeDelta: {x: 290, y: 25}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &283349182
 MonoBehaviour:
@@ -7196,7 +7213,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 11.47168, y: 513.676}
-  m_SizeDelta: {x: 350, y: 25}
+  m_SizeDelta: {x: 290, y: 25}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &435138469
 MonoBehaviour:
@@ -7211,14 +7228,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1511659, g: 0.37948903, b: 0.4056604, a: 1}
+  m_Color: {r: 0.30193132, g: 0.5566038, b: 0.3906092, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ec7878d67f12b9f48ac668cd2b9e9fef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 035dc000d9aa3c045abe334fd60a408f, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7664,6 +7681,10 @@ PrefabInstance:
       value: Sandworm
       objectReference: {fileID: 0}
     - target: {fileID: 7131685579728527590, guid: f9db6c2647d626b4fb33ad0ebac4aba0, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 584323368}
+    - target: {fileID: 7131685579728527590, guid: f9db6c2647d626b4fb33ad0ebac4aba0, type: 3}
       propertyPath: wormHead
       value: 
       objectReference: {fileID: 530478982}
@@ -7724,7 +7745,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 128, y: -110.20007}
+  m_AnchoredPosition: {x: 137.55963, y: -115.93585}
   m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &554914838
@@ -13106,7 +13127,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.00012207031, y: -47.898163}
+  m_AnchoredPosition: {x: 0.00012207031, y: -43.974335}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &675650380
@@ -13144,7 +13165,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 29, y: -110.3}
+  m_AnchoredPosition: {x: 38.55963, y: -116.03577}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &675650382
@@ -18372,6 +18393,10 @@ PrefabInstance:
       value: 1.39
       objectReference: {fileID: 0}
     - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: _playerController
+      value: 
+      objectReference: {fileID: 5914500317196535378}
+    - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
       propertyPath: groundLayer.m_Bits
       value: 64
       objectReference: {fileID: 0}
@@ -18797,6 +18822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5fdaf0e6a2acc0458d9329895aa5972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WinDoor
+  winUI: {fileID: 1941771721}
   promptObject: {fileID: 2119544915}
   promptText: {fileID: 2119544918}
   lockedMessage: Collect Spice First
@@ -19016,11 +19042,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 668054206}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -773.52826, y: 513.6759}
-  m_SizeDelta: {x: 362, y: 25}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 11.471682, y: 514.63184}
+  m_SizeDelta: {x: 290, y: 34}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1604724189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19245,6 +19271,10 @@ PrefabInstance:
       value: 1.39
       objectReference: {fileID: 0}
     - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: _playerController
+      value: 
+      objectReference: {fileID: 5914500317196535378}
+    - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
       propertyPath: groundLayer.m_Bits
       value: 64
       objectReference: {fileID: 0}
@@ -19349,6 +19379,10 @@ PrefabInstance:
       propertyPath: detectionRange
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: _playerController
+      value: 
+      objectReference: {fileID: 5914500317196535378}
     - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
       propertyPath: groundLayer.m_Bits
       value: 64
@@ -19462,6 +19496,10 @@ PrefabInstance:
       propertyPath: detectionRange
       value: 1.39
       objectReference: {fileID: 0}
+    - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: _playerController
+      value: 
+      objectReference: {fileID: 5914500317196535378}
     - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
       propertyPath: groundLayer.m_Bits
       value: 64
@@ -19846,6 +19884,7 @@ GameObject:
   - component: {fileID: 1941771714}
   - component: {fileID: 1941771720}
   - component: {fileID: 1941771721}
+  - component: {fileID: 1941771722}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -19892,6 +19931,7 @@ MonoBehaviour:
     sceneAsset: {fileID: 102900000, guid: 80b196f63cdb5c542967792c4e5c0932, type: 3}
     sceneName: MainMenu
   gameOverDelay: 1
+  _playerHealth: {fileID: 5914500317196535370}
 --- !u!114 &1941771716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20013,6 +20053,26 @@ MonoBehaviour:
   mainMenuScene:
     sceneAsset: {fileID: 102900000, guid: 80b196f63cdb5c542967792c4e5c0932, type: 3}
     sceneName: MainMenu
+--- !u!114 &1941771722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941771713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75feee9f5bef0c2498209a621f813fc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShieldBarUI
+  playerShield: {fileID: 5914500317196535377}
+  fillBar: {fileID: 435138468}
+  ghostBar: {fileID: 283349181}
+  smoothSpeed: 5
+  ghostDelay: 0.6
+  ghostDrainSpeed: 2
+  cooldownColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
+  pulseSpeed: 3
 --- !u!1 &2017932870
 GameObject:
   m_ObjectHideFlags: 0
@@ -20550,6 +20610,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: ef6c8ad23ea417e4b82ba7b33068ab73, type: 2}
     - target: {fileID: 737017293082857014, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 519420034}
+    - target: {fileID: 737017293082857014, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
       propertyPath: airControlFactor
       value: 0.86
       objectReference: {fileID: 0}
@@ -20625,6 +20689,10 @@ PrefabInstance:
       propertyPath: NoiseModule.scrollSpeed.minMaxState
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1417880583906818558, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 2106604153}
     - target: {fileID: 1487553485099672528, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
       propertyPath: ShapeModule.type
       value: 20
@@ -20728,6 +20796,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407b54d962b2e484b96a963ae54d77d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWater
+--- !u!114 &5914500317196535377 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4496305112314922510, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+  m_PrefabInstance: {fileID: 5914500317196535366}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fd201b3803b5ac41a4aac0fcc8ed998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerShield
+--- !u!114 &5914500317196535378 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 737017293082857014, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+  m_PrefabInstance: {fileID: 5914500317196535366}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a595682b6c5c34481def91dd84e67f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!1001 &6332673925195917598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20804,6 +20894,10 @@ PrefabInstance:
       propertyPath: detectionRange
       value: 3.3
       objectReference: {fileID: 0}
+    - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: _playerController
+      value: 
+      objectReference: {fileID: 5914500317196535378}
     - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
       propertyPath: groundLayer.m_Bits
       value: 64

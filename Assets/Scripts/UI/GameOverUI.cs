@@ -18,7 +18,8 @@ public class GameOverUI : MonoBehaviour
     // How long to wait after death before freezing and showing Game Over
     [SerializeField] private float gameOverDelay = 1f;
 
-    private PlayerHealth _playerHealth;
+    [Header("Player Reference")]
+    [SerializeField] private PlayerHealth _playerHealth;
 
     private void OnValidate()
     {
@@ -31,11 +32,10 @@ public class GameOverUI : MonoBehaviour
         // Panel starts hidden
         gameOverPanel.SetActive(false);
 
-        _playerHealth = FindObjectOfType<PlayerHealth>();
         if (_playerHealth != null)
             _playerHealth.OnDeath += HandlePlayerDeath;
         else
-            Debug.LogError("[GameOverUI] PlayerHealth not found in scene.", this);
+            Debug.LogError("[GameOverUI] PlayerHealth reference is not assigned.", this);
     }
 
     private void OnDestroy()

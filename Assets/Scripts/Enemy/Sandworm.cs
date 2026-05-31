@@ -32,7 +32,9 @@ public class Sandworm : Enemy
     private enum WormState { Waiting, Countdown, Warning, Emerging, Underground }
     private WormState _state = WormState.Waiting;
 
-    private Transform _player;
+    [Header("Player Reference")]
+    [SerializeField] private Transform _player;
+
     private float _countdownTimer;
     private Vector3 _groundPosition;
     private Vector3 _originalSpriteScale;
@@ -69,11 +71,8 @@ public class Sandworm : Enemy
 
     private void Start()
     {
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null)
-            _player = playerObj.transform;
-        else
-            Debug.LogError("[Sandworm] No Player found in scene.");
+        if (_player == null)
+            Debug.LogError("[Sandworm] Player Transform reference is not assigned.", this);
 
         // Cache the ground position so the worm always returns here after bursting
         _groundPosition = transform.position;
@@ -155,7 +154,7 @@ public class Sandworm : Enemy
 
         // Emerge phase > worm bursts up from ground
         _state = WormState.Emerging;
-        wormSprite.transform.localScale = _originalSpriteScale; // Reset flip before emerging
+        wormSprite.transform.localScale = _originalSpriteScale;
         wormSprite.enabled = true;
 
         // Activate WormHead kill zone for the duration of the burst

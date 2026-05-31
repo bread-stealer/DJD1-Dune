@@ -4,6 +4,9 @@ using TMPro;
 [RequireComponent(typeof(Collider2D))]
 public class WinDoor : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private WinUI winUI;
+
     [Header("Prompt")]
     [SerializeField] private GameObject promptObject;
     [SerializeField] private TextMeshPro promptText;
@@ -27,9 +30,10 @@ public class WinDoor : MonoBehaviour
         // Only win if player has collected spice
         if (SpiceManager.Instance.TotalSpice <= 0) return;
 
-        WinUI winUI = FindObjectOfType<WinUI>();
         if (winUI != null)
             winUI.ShowWinScreen();
+        else
+            Debug.LogError("[WinDoor] WinUI reference is not assigned.", this);
     }
 
     private void OnTriggerStay2D(Collider2D other)

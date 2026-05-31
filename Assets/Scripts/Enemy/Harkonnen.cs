@@ -24,8 +24,10 @@ public class Harkonnen : Enemy
     [Header("Patrol Settings")]
     [SerializeField] private float flipCooldown = 0.3f;
 
+    [Header("Player Reference")]
+    [SerializeField] private PlayerController _playerController;
+
     private Transform player;
-    private PlayerController _playerController;
     private float lastAttackTime;
     private float lastFlipTime;
     private float patrolDirection = 1f;
@@ -34,16 +36,13 @@ public class Harkonnen : Enemy
     {
         base.Awake();
 
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null)
+        if (_playerController == null)
         {
-            player = playerObj.transform;
-            _playerController = playerObj.GetComponent<PlayerController>();
+            Debug.LogError("[Harkonnen] PlayerController reference is not assigned.", this);
+            return;
         }
-        else
-        {
-            Debug.LogError("[Harkonnen] No GameObject with tag 'Player' found in scene.");
-        }
+
+        player = _playerController.transform;
     }
 
     protected virtual void Start()
