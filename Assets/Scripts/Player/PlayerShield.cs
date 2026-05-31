@@ -21,15 +21,17 @@ public class PlayerShield : MonoBehaviour
     [SerializeField] private Color hitFlashColor = new Color(0.5f, 0.8f, 1f, 1f);
     [SerializeField] private float hitFlashDuration = 0.1f;
 
-    public bool IsShieldActive {get; private set;}
-    public float CurrentStamina {get; private set;}
-    public bool IsOnCooldown {get; private set;}
+    public bool IsShieldActive { get; private set; }
+    public float CurrentStamina { get; private set; }
+    public float MaxStamina => maxStamina;
+    public bool IsOnCooldown { get; private set; }
 
     // Events for other systems (UI, audio, animation)
     public event Action OnShieldActivated;
     public event Action OnShieldDeactivated;
     public event Action OnShieldBroken;
     public event Action OnShieldBlocked;
+    public event Action OnShieldRecharged;
 
     private bool _isImmune;
     private Color _originalColor;
@@ -146,6 +148,7 @@ public class PlayerShield : MonoBehaviour
         yield return new WaitForSeconds(cooldownDuration);
         CurrentStamina = maxStamina;
         IsOnCooldown = false;
+        OnShieldRecharged?.Invoke();
     }
 
     private IEnumerator HitFlashRoutine()
