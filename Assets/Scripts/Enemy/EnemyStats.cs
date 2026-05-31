@@ -1,29 +1,30 @@
-// Data container for enemy stats
 using UnityEngine;
-public class EnemyStats
-{
-    // Read-only from outside
-    // Only the constructor can set these
-    public float MaxHealth {get; private set;}
-    public float MoveSpeed {get; private set;}
-    public float Damage {get; private set;}
-    public float AttackRange {get; private set;}
-    public float DetectionRange {get; private set;}
-    public float AttackCooldown {get; private set;}
-    public LayerMask PlayerLayer {get; private set;}
 
-    // Constructor
-    // Called by each enemy child class with its own values
-    public EnemyStats(float maxHealth, float moveSpeed, float damage,
-                      float attackRange, float detectionRange,
-                      float attackCooldown, LayerMask playerLayer)
-    {
-        MaxHealth = maxHealth;
-        MoveSpeed = moveSpeed;
-        Damage = damage;
-        AttackRange = attackRange;
-        DetectionRange = detectionRange;
-        AttackCooldown = attackCooldown;
-        PlayerLayer = playerLayer;
-    }
+// Create via right-click > Create > DUNE > Enemy Stats
+[CreateAssetMenu(fileName = "EnemyStats", menuName = "DUNE/Enemy Stats")]
+public class EnemyStats : ScriptableObject
+{
+    [Header("Health")]
+    [SerializeField] private float maxHealth = 80f;
+
+    [Header("Movement")]
+    [SerializeField] private float moveSpeed = 3f;
+
+    [Header("Combat")]
+    [SerializeField] private float damage = 15f;
+    [SerializeField] private float attackRange = 1.5f;
+    [SerializeField] private float attackCooldown = 1f;
+
+    [Header("Detection")]
+    [SerializeField] private float detectionRange = 6f;
+    [SerializeField] private LayerMask playerLayer;
+
+    // Read-only from outside
+    public float MaxHealth => maxHealth;
+    public float MoveSpeed => moveSpeed;
+    public float Damage => damage;
+    public float AttackRange => attackRange;
+    public float AttackCooldown => attackCooldown;
+    public float DetectionRange => detectionRange;
+    public LayerMask PlayerLayer => playerLayer;
 }

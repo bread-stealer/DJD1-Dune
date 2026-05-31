@@ -10,17 +10,6 @@ public class Harkonnen : Enemy
     [SerializeField] private float ledgeCheckDistance = 0.5f;
     [SerializeField] private LayerMask groundLayer;
 
-    [Header("Stats Override")]
-    [SerializeField] private float health = 80f;
-    [SerializeField] private float speed = 3f;
-    [SerializeField] private float attackDamage = 15f;
-    [SerializeField] private float attackRange = 1.5f;
-    [SerializeField] private float detectionRange = 6f;
-    [SerializeField] private float attackCooldown = 1f;
-
-    [Header("Detection")]
-    [SerializeField] private LayerMask playerLayer;
-
     [Header("Patrol Settings")]
     [SerializeField] private float flipCooldown = 0.3f;
 
@@ -48,25 +37,6 @@ public class Harkonnen : Enemy
         }
 
         player = _playerController.transform;
-    }
-
-    protected virtual void Start()
-    {
-        stats = CreateStats();
-        currentHealth = stats.MaxHealth;
-    }
-
-    protected override EnemyStats CreateStats()
-    {
-        return new EnemyStats(
-            maxHealth: health,
-            moveSpeed: speed,
-            damage: attackDamage,
-            attackRange: attackRange,
-            detectionRange: detectionRange,
-            attackCooldown: attackCooldown,
-            playerLayer: playerLayer
-        );
     }
 
     protected override void EvaluateState()
@@ -178,19 +148,17 @@ public class Harkonnen : Enemy
 #if UNITY_EDITOR
     protected override void OnDrawGizmosSelected()
     {
-        // Yellow = detection range
+        if (stats == null) return;
+
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
+        Gizmos.DrawWireSphere(transform.position, stats.DetectionRange);
 
-        // Red = attack range
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(transform.position, stats.AttackRange);
 
-        // Blue = wall check
         Gizmos.color = Color.blue;
         Gizmos.DrawRay(transform.position, Vector2.right * patrolDirection * wallCheckDistance);
 
-        // Green = ledge check
         Gizmos.color = Color.green;
         Vector3 ledgeOrigin = transform.position + new Vector3(patrolDirection * 0.3f, 0f);
         Gizmos.DrawRay(ledgeOrigin, Vector2.down * ledgeCheckDistance);

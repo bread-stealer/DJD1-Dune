@@ -15,27 +15,11 @@ public class Sandworm : Enemy
     [SerializeField] private CameraShake cameraShake;
     [SerializeField] private WormHead wormHead;
 
-    [Header("Stats")]
-    [SerializeField] private LayerMask playerLayer;
-
     private enum WormState { Idle, Warning, Emerging, Underground }
     private WormState _state = WormState.Idle;
 
     private Vector3 _groundPosition;
     private Vector3 _originalSpriteScale;
-
-    protected override EnemyStats CreateStats()
-    {
-        return new EnemyStats(
-            maxHealth: 1f,
-            moveSpeed: 0f,
-            damage: 0f,
-            attackRange: 0f,
-            detectionRange: 0f,
-            attackCooldown: 0f,
-            playerLayer: playerLayer
-        );
-    }
 
     protected override void Awake()
     {
@@ -71,7 +55,6 @@ public class Sandworm : Enemy
     {
         _state = WormState.Warning;
 
-        // Snap to player's X along the ground
         transform.position = new Vector3(playerPosition.x, _groundPosition.y, _groundPosition.z);
 
         if (cameraShake != null)
@@ -82,7 +65,6 @@ public class Sandworm : Enemy
 
         yield return new WaitForSeconds(warningDuration);
 
-        // Emerge
         _state = WormState.Emerging;
         wormSprite.transform.localScale = _originalSpriteScale;
         wormSprite.enabled = true;
@@ -96,7 +78,6 @@ public class Sandworm : Enemy
         if (wormHead != null)
             wormHead.SetActive(false);
 
-        // Burrow back
         _state = WormState.Underground;
         wormSprite.enabled = false;
 

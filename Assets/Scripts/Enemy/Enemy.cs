@@ -6,7 +6,9 @@ public abstract class Enemy : MonoBehaviour
     [Header("References")]
     [SerializeField] protected Transform visualRoot;
 
-    protected EnemyStats stats;
+    [Header("Stats")]
+    [SerializeField] protected EnemyStats stats;
+
     protected float currentHealth;
     protected bool isDead;
     protected Rigidbody2D rb;
@@ -16,13 +18,17 @@ public abstract class Enemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-
-        // Only get Animator if it exists
         animator = visualRoot.GetComponent<Animator>();
 
-        // Ask the child class for its specific stats
-        //stats = CreateStats();
-        //currentHealth = stats.MaxHealth;
+        // Stats are optional > Sandworm can leave this unassigned given no combat stats
+    }
+
+    protected virtual void Start()
+    {
+        if (stats != null)
+            currentHealth = stats.MaxHealth;
+        else
+            currentHealth = float.MaxValue;
     }
 
     protected virtual void Update()
@@ -31,12 +37,8 @@ public abstract class Enemy : MonoBehaviour
         EvaluateState();
     }
 
-    // Each enemy defines its own stats
-    protected abstract EnemyStats CreateStats();
-    // Each enemy defines its own behaviour loop
     protected abstract void EvaluateState();
 
-    // Called by weapon/player scripts from outside
     public virtual void TakeDamage(float amount, bool isHeavy = false)
     {
         if (isDead) return;
@@ -44,7 +46,6 @@ public abstract class Enemy : MonoBehaviour
         currentHealth -= amount;
         OnDamaged();
 
-        // Spawn damage number above the enemy
         if (DamageNumberSpawner.Instance != null)
             DamageNumberSpawner.Instance.Spawn(amount, isHeavy, transform.position);
 
@@ -52,11 +53,8 @@ public abstract class Enemy : MonoBehaviour
             Die();
     }
 
-    // Only relevant internally
-    // Children can override for hit effects
     protected virtual void OnDamaged()
     {
-        
     }
 
     protected virtual void Die()
@@ -73,6 +71,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected bool PlayerInRange(float range)
     {
+        if (stats == null) return false;
         return Physics2D.OverlapCircle(transform.position, range, stats.PlayerLayer);
     }
 
@@ -85,8 +84,7 @@ public abstract class Enemy : MonoBehaviour
 #if UNITY_EDITOR
     protected virtual void OnDrawGizmosSelected()
     {
-        if (stats == null)
-            return;
+        if (stats == null) return;
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, stats.DetectionRange);
