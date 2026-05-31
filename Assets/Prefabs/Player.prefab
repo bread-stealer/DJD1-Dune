@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 296680174611229351}
   - component: {fileID: 2019612307512383731}
   - component: {fileID: 361603933855579827}
+  - component: {fileID: 1417880583906818558}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -117,12 +118,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
+  airControlFactor: 0.7
   jumpForce: 5.5
+  jumpCutMultiplier: 0.4
   groundCheck: {fileID: 7632579518248877133}
   groundCheckRadius: 0.1
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  cameraShake: {fileID: 0}
+  shakeIntensity: 0.15
+  shakeDuration: 0.15
+  hitStopDuration: 0.05
 --- !u!114 &4496305112314922510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +201,21 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &1417880583906818558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386027501770324002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f00a96ab4fcdc94ebcfab3189d324b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHitFlash
+  spriteRenderer: {fileID: 0}
+  flashColor: {r: 1, g: 0.2, b: 0.2, a: 1}
+  flashDuration: 0.12
 --- !u!1 &1624770637507864105
 GameObject:
   m_ObjectHideFlags: 0
