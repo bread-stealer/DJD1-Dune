@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
     private PlayerShield _shield;
     private PlayerHealth _health;
+    private PlayerAudio _playerAudio;
 
     private bool _isJumping;
     private bool _wasGrounded;
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _shield = GetComponent<PlayerShield>();
         _health = GetComponent<PlayerHealth>();
+        _playerAudio = GetComponent<PlayerAudio>();
     }
 
     private void Update()
@@ -70,10 +72,14 @@ public class PlayerController : MonoBehaviour
         {
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);
             _isJumping = true;
+            _playerAudio?.PlayJumpSFX();
         }
 
         if (grounded && !_wasGrounded)
+        {
             _isJumping = false;
+            _playerAudio?.PlayLandSFX();
+        }
 
         _wasGrounded = grounded;
     }
