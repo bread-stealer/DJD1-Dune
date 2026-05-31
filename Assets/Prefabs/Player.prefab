@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2019612307512383731}
   - component: {fileID: 361603933855579827}
   - component: {fileID: 1417880583906818558}
+  - component: {fileID: 3304253013076394616}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -216,6 +217,27 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   flashColor: {r: 1, g: 0.2, b: 0.2, a: 1}
   flashDuration: 0.12
+--- !u!114 &3304253013076394616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386027501770324002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7c88f32e4fecf444ac016757d37266b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAudio
+  attackClip: {fileID: 0}
+  hitClip: {fileID: 0}
+  deathClip: {fileID: 0}
+  jumpClip: {fileID: 0}
+  landClip: {fileID: 0}
+  shieldOnClip: {fileID: 0}
+  shieldOffClip: {fileID: 0}
+  shieldBlockClip: {fileID: 0}
+  shieldBrokenClip: {fileID: 0}
 --- !u!1 &1624770637507864105
 GameObject:
   m_ObjectHideFlags: 0
