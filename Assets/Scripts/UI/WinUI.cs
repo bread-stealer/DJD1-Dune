@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class WinUI : MonoBehaviour
 {
+    public static event System.Action OnWin;
+
     [Header("References")]
     [SerializeField] private GameObject winPanel;
     [SerializeField] private Button firstSelectedButton;
@@ -28,6 +30,7 @@ public class WinUI : MonoBehaviour
 
     public void ShowWinScreen()
     {
+        OnWin?.Invoke();
         winPanel.SetActive(true);
         Time.timeScale = 0f;
         StartCoroutine(SelectFirstButton());
