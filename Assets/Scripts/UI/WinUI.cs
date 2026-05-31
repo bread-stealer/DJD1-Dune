@@ -1,10 +1,14 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class WinUI : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject winPanel;
+    [SerializeField] private Button firstSelectedButton;
 
     [Header("Scenes")]
     [SerializeField] private SceneRef nextLevelScene;
@@ -26,6 +30,17 @@ public class WinUI : MonoBehaviour
     {
         winPanel.SetActive(true);
         Time.timeScale = 0f;
+        StartCoroutine(SelectFirstButton());
+    }
+
+    private IEnumerator SelectFirstButton()
+    {
+        // Wait a real frame for the panel to fully enable
+        yield return new WaitForSecondsRealtime(0.1f);
+
+        // Reset to null first to force the EventSystem to re-evaluate
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstSelectedButton.gameObject);
     }
 
     // Called by Next Level button
