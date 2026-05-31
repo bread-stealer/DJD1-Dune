@@ -6,16 +6,17 @@ public class HealthBarUI : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private PlayerHealth playerHealth;
-    [SerializeField] private Image fillBar;
-    [SerializeField] private Image ghostBar;
+    [SerializeField] private RectTransform fillBar;
+    [SerializeField] private RectTransform ghostBar;
 
     [Header("Animation")]
     [SerializeField] private float smoothSpeed = 5f;
     [SerializeField] private float ghostDelay = 0.6f;
     [SerializeField] private float ghostDrainSpeed = 2f;
 
-    private float _targetFill;
-    private float _ghostFill;
+    private float _fullWidth;
+    private float _targetWidth;
+    private float _ghostWidth;
     private Coroutine _ghostDelayCoroutine;
 
     private void Start()
@@ -26,37 +27,37 @@ public class HealthBarUI : MonoBehaviour
             return;
         }
 
-        // Initialise both bars to full
-        _targetFill = 1f;
-        _ghostFill = 1f;
-        fillBar.fillAmount = 1f;
-        ghostBar.fillAmount = 1f;
+        _fullWidth = fillBar.sizeDelta.x;
+        _targetWidth = _fullWidth;
+        _ghostWidth = _fullWidth;
 
         playerHealth.OnHealthChanged += HandleHealthChanged;
     }
 
     private void OnDestroy()
     {
-        // Always unsubscribe to avoid memory leaks
         if (playerHealth != null)
             playerHealth.OnHealthChanged -= HandleHealthChanged;
     }
 
     private void Update()
     {
-        // Smooth the fill bar toward target
-        fillBar.fillAmount = Mathf.Lerp(fillBar.fillAmount, _targetFill, smoothSpeed * Time.deltaTime);
+        // Smooth fill bar toward target
+        float newFillWidth = Mathf.Lerp(fillBar.sizeDelta.x, _targetWidth, smoothSpeed * Time.deltaTime);
+        fillBar.sizeDelta = new Vector2(newFillWidth, fillBar.sizeDelta.y);
 
         // Ghost bar drains after delay
-        if (ghostBar.fillAmount > _targetFill)
-            ghostBar.fillAmount = Mathf.Lerp(ghostBar.fillAmount, _targetFill, ghostDrainSpeed * Time.deltaTime);
+        if (_ghostWidth > _targetWidth)
+        {
+            _ghostWidth = Mathf.Lerp(_ghostWidth, _targetWidth, ghostDrainSpeed * Time.deltaTime);
+            ghostBar.sizeDelta = new Vector2(_ghostWidth, ghostBar.sizeDelta.y);
+        }
     }
 
     private void HandleHealthChanged(float current, float max)
     {
-        _targetFill = current / max;
+        _targetWidth = (current / max) * _fullWidth;
 
-        // Restart ghost delay on each hit
         if (_ghostDelayCoroutine != null)
             StopCoroutine(_ghostDelayCoroutine);
         _ghostDelayCoroutine = StartCoroutine(GhostDelayRoutine());
@@ -64,8 +65,6 @@ public class HealthBarUI : MonoBehaviour
 
     private IEnumerator GhostDelayRoutine()
     {
-        // Ghost bar holds still for a moment before draining
         yield return new WaitForSeconds(ghostDelay);
-        // Update() handles the actual drain
     }
 }
