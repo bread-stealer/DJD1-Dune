@@ -34,7 +34,7 @@ public class Sandworm : Enemy
             wormHead.SetActive(false);
     }
 
-    private void Start()
+    protected override void Start()
     {
         _groundPosition = transform.position;
     }

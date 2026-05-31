@@ -339,6 +339,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: dcb1df186d79ad442ac75da4f632517c, type: 2}
+    - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
       propertyPath: health
       value: 30
       objectReference: {fileID: 0}
@@ -18408,6 +18412,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: dcb1df186d79ad442ac75da4f632517c, type: 2}
+    - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
       propertyPath: health
       value: 30
       objectReference: {fileID: 0}
@@ -19286,6 +19294,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: dcb1df186d79ad442ac75da4f632517c, type: 2}
+    - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
       propertyPath: health
       value: 30
       objectReference: {fileID: 0}
@@ -19394,6 +19406,10 @@ PrefabInstance:
       propertyPath: speed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: dcb1df186d79ad442ac75da4f632517c, type: 2}
     - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
       propertyPath: health
       value: 30
@@ -19511,6 +19527,10 @@ PrefabInstance:
       propertyPath: speed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: dcb1df186d79ad442ac75da4f632517c, type: 2}
     - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
       propertyPath: health
       value: 30
@@ -20909,6 +20929,10 @@ PrefabInstance:
       propertyPath: speed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: dcb1df186d79ad442ac75da4f632517c, type: 2}
     - target: {fileID: 3070463161711439486, guid: ad66072efb9031b45a5643c9f301899b, type: 3}
       propertyPath: health
       value: 30
