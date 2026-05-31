@@ -3,16 +3,10 @@ using UnityEngine;
 
 public class Sandworm : Enemy
 {
-    [Header("Trigger")]
-    [SerializeField] private float triggerRadius = 8f;
-    [SerializeField] private float emergeDelay = 5f;
-    [SerializeField] private float escapeRadius = 12f;
-
     [Header("Attack")]
     [SerializeField] private float warningDuration = 2f;
     [SerializeField] private float burstDuration = 1f;
     [SerializeField] private float disappearDelay = 3f;
-    // How high the worm rises above the ground
     [SerializeField] private float burstHeight = 3f;
 
     [Header("References")]
@@ -21,33 +15,23 @@ public class Sandworm : Enemy
     [SerializeField] private CameraShake cameraShake;
     [SerializeField] private WormHead wormHead;
 
-    // Assign rocky platform layers here > worm won't trigger if player is standing on these
-    [Header("Safe Ground")]
-    [SerializeField] private LayerMask safeGroundLayer;
-    [SerializeField] private float groundCheckDistance = 0.3f;
-
     [Header("Stats")]
     [SerializeField] private LayerMask playerLayer;
 
-    private enum WormState { Waiting, Countdown, Warning, Emerging, Underground }
-    private WormState _state = WormState.Waiting;
+    private enum WormState { Idle, Warning, Emerging, Underground }
+    private WormState _state = WormState.Idle;
 
-    [Header("Player Reference")]
-    [SerializeField] private Transform _player;
-
-    private float _countdownTimer;
     private Vector3 _groundPosition;
     private Vector3 _originalSpriteScale;
 
     protected override EnemyStats CreateStats()
     {
-        // Sandworm has no combat stats > instakill is handled by WormHead separately
         return new EnemyStats(
             maxHealth: 1f,
             moveSpeed: 0f,
             damage: 0f,
             attackRange: 0f,
-            detectionRange: triggerRadius,
+            detectionRange: 0f,
             attackCooldown: 0f,
             playerLayer: playerLayer
         );
@@ -57,93 +41,39 @@ public class Sandworm : Enemy
     {
         base.Awake();
 
-        // Cache original sprite scale to preserve it when flipping
         _originalSpriteScale = wormSprite.transform.localScale;
 
-        // Worm starts hidden underground
         if (wormSprite != null)
             wormSprite.enabled = false;
 
-        // WormHead kill zone starts inactive
         if (wormHead != null)
             wormHead.SetActive(false);
     }
 
     private void Start()
     {
-        if (_player == null)
-            Debug.LogError("[Sandworm] Player Transform reference is not assigned.", this);
-
-        // Cache the ground position so the worm always returns here after bursting
         _groundPosition = transform.position;
     }
 
-    protected override void EvaluateState()
+    // Called by SandwormManager when the player has been on sand long enough
+    public void Trigger(Vector3 playerPosition)
     {
-        if (_player == null) return;
-
-        switch (_state)
-        {
-            case WormState.Waiting:
-                CheckPlayerInRange();
-                break;
-
-            case WormState.Countdown:
-                TickCountdown();
-                break;
-        }
+        if (_state != WormState.Idle) return;
+        StartCoroutine(EmergeSequence(playerPosition));
     }
 
-    private bool PlayerOnSafeGround()
-    {
-        // Raycast downward from the player to check if they're standing on a safe layer
-        RaycastHit2D hit = Physics2D.Raycast(
-            _player.position,
-            Vector2.down,
-            groundCheckDistance,
-            safeGroundLayer
-        );
-        return hit.collider != null;
-    }
+    public bool IsIdle => _state == WormState.Idle;
 
-    private void CheckPlayerInRange()
-    {
-        float distance = Vector2.Distance(transform.position, _player.position);
+    // Sandworm has no autonomous behaviour > manager drives it
+    protected override void EvaluateState() { }
 
-        // Only trigger if player is close and not standing on safe ground
-        if (distance <= triggerRadius && !PlayerOnSafeGround())
-        {
-            _countdownTimer = emergeDelay;
-            _state = WormState.Countdown;
-            Debug.Log("[Sandworm] Player entered area > countdown started.");
-        }
-    }
-
-    private void TickCountdown()
-    {
-        float distance = Vector2.Distance(transform.position, _player.position);
-
-        // If player escapes or reaches safe ground, reset
-        if (distance > escapeRadius || PlayerOnSafeGround())
-        {
-            _state = WormState.Waiting;
-            Debug.Log("[Sandworm] Player escaped, resetting.");
-            return;
-        }
-
-        _countdownTimer -= Time.deltaTime;
-        if (_countdownTimer <= 0f)
-            StartCoroutine(EmergeSequence());
-    }
-
-    private IEnumerator EmergeSequence()
+    private IEnumerator EmergeSequence(Vector3 playerPosition)
     {
         _state = WormState.Warning;
 
-        // Snap worm to player's current X position along the ground
-        transform.position = new Vector3(_player.position.x, _groundPosition.y, _groundPosition.z);
+        // Snap to player's X along the ground
+        transform.position = new Vector3(playerPosition.x, _groundPosition.y, _groundPosition.z);
 
-        // Warning phase > camera shake before burst
         if (cameraShake != null)
             cameraShake.StartShake(warningDuration, 0.3f);
 
@@ -152,35 +82,29 @@ public class Sandworm : Enemy
 
         yield return new WaitForSeconds(warningDuration);
 
-        // Emerge phase > worm bursts up from ground
+        // Emerge
         _state = WormState.Emerging;
         wormSprite.transform.localScale = _originalSpriteScale;
         wormSprite.enabled = true;
 
-        // Activate WormHead kill zone for the duration of the burst
         if (wormHead != null)
             wormHead.SetActive(true);
 
-        // OnTriggerEnter2D on WormHead handles the kill while state is Emerging
         yield return StartCoroutine(BurstAnimation());
-
         yield return new WaitForSeconds(burstDuration);
 
-        // Deactivate kill zone before burrowing back
         if (wormHead != null)
             wormHead.SetActive(false);
 
-        // Burrow back underground
+        // Burrow back
         _state = WormState.Underground;
         wormSprite.enabled = false;
 
         if (sandParticles != null)
             sandParticles.Stop();
 
-        // Wait then reset so worm can trigger again
         yield return new WaitForSeconds(disappearDelay);
-        _state = WormState.Waiting;
-        Debug.Log("[Sandworm] Worm reset, waiting.");
+        _state = WormState.Idle;
     }
 
     private IEnumerator BurstAnimation()
@@ -191,19 +115,17 @@ public class Sandworm : Enemy
         float elapsed = 0f;
         float halfDuration = burstDuration * 0.5f;
 
-        // Rise up > fast at start, slows at peak
         while (elapsed < halfDuration)
         {
             elapsed += Time.deltaTime;
             float t = elapsed / halfDuration;
-            float easedT = 1f - Mathf.Pow(1f - t, 2f); // Ease out
+            float easedT = 1f - Mathf.Pow(1f - t, 2f);
             transform.position = Vector3.Lerp(groundPosition, peakPosition, easedT);
             yield return null;
         }
 
         elapsed = 0f;
 
-        // Fall back down > slow at start, fast at bottom
         while (elapsed < halfDuration)
         {
             elapsed += Time.deltaTime;
@@ -213,7 +135,6 @@ public class Sandworm : Enemy
             yield return null;
         }
 
-        // Flip sprite to show worm diving back underground
         wormSprite.transform.localScale = new Vector3(_originalSpriteScale.x, -_originalSpriteScale.y, _originalSpriteScale.z);
         transform.position = groundPosition;
     }
@@ -221,13 +142,8 @@ public class Sandworm : Enemy
 #if UNITY_EDITOR
     protected override void OnDrawGizmosSelected()
     {
-        // Yellow = trigger radius
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, triggerRadius);
-
-        // Red = escape radius
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, escapeRadius);
+        Gizmos.DrawWireSphere(transform.position, 8f);
     }
 #endif
 }

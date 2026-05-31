@@ -1840,6 +1840,7 @@ GameObject:
   - component: {fileID: 125524245}
   - component: {fileID: 125524247}
   - component: {fileID: 125524248}
+  - component: {fileID: 125524249}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1899,6 +1900,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc07f56da600288458cba8019e70581b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitStop
+--- !u!114 &125524249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125524244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8a352a25288684f8d1347ecb7bd67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SandwormManager
+  sandworm: {fileID: 787174161}
+  player: {fileID: 584323368}
+  sandGroundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  safeGroundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheckDistance: 0.5
+  timeOnSandToTrigger: 2
+  cooldownAfterEmerge: 8
 --- !u!1001 &131513256
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13165,7 +13189,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 38.55963, y: -116.03577}
+  m_AnchoredPosition: {x: 38.55957, y: -116.03577}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &675650382
@@ -13310,6 +13334,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &787174161 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7131685579728527590, guid: f9db6c2647d626b4fb33ad0ebac4aba0, type: 3}
+  m_PrefabInstance: {fileID: 530478981}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f891f5e5616e2439df2cb44aae7258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sandworm
 --- !u!1 &870527942
 GameObject:
   m_ObjectHideFlags: 0
