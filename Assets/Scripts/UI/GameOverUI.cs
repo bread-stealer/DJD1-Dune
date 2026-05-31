@@ -1,11 +1,14 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOverUI : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private Button firstSelectedButton;
 
     [Header("Scenes")]
     [SerializeField] private SceneRef gameScene;
@@ -48,10 +51,17 @@ public class GameOverUI : MonoBehaviour
 
     private IEnumerator ShowGameOverDelayed()
     {
-        // Wait for worm animation to finish before freezing
-        yield return new WaitForSeconds(gameOverDelay);
+        // Use realtime so delay works regardless of timescale
+        yield return new WaitForSecondsRealtime(gameOverDelay);
         gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
+
+        // Wait a real frame for the panel to fully enable
+        yield return new WaitForSecondsRealtime(0.1f);
+
+        // Reset to null first to force the EventSystem to re-evaluate
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstSelectedButton.gameObject);
     }
 
     // Called by Restart button
