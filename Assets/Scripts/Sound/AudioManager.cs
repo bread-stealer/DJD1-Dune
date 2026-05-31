@@ -68,7 +68,8 @@ public class AudioManager : MonoBehaviour
         FadeOutMusic();
     }
 
-    public void PlaySFX(AudioClip clip, bool randomPitch = true)
+
+    public void PlaySFX(AudioClip clip, float volume, bool randomPitch = true)
     {
         if (clip == null) return;
 
@@ -76,13 +77,14 @@ public class AudioManager : MonoBehaviour
             ? _originalPitch + Random.Range(-pitchVariation, pitchVariation)
             : _originalPitch;
 
-        sfxSource.PlayOneShot(clip);
+        sfxSource.PlayOneShot(clip, volume);
     }
 
     public void SetSFXVolume(float volume)
     {
         sfxSource.volume = Mathf.Clamp01(volume);
     }
+
 
     public void PlayMusicWithFadeIn(AudioClip clip)
     {
@@ -110,6 +112,7 @@ public class AudioManager : MonoBehaviour
     {
         musicSource.volume = Mathf.Clamp01(volume);
     }
+
 
     private void StartFade(float duration, float targetVolume, System.Action onComplete = null)
     {
