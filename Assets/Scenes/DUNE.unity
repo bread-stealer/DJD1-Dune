@@ -20799,7 +20799,7 @@ PrefabInstance:
     - target: {fileID: 3304253013076394616, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
       propertyPath: rockFootstepClip.clip
       value: 
-      objectReference: {fileID: 8300000, guid: 941ef738a0fe5564cb6d7e5d906cb373, type: 3}
+      objectReference: {fileID: 8300000, guid: 39758ca3197400948a5e53c2faca7903, type: 3}
     - target: {fileID: 3304253013076394616, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
       propertyPath: sandFootstepClip.clip
       value: 
