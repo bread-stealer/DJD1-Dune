@@ -1,5 +1,4 @@
-# Dune: Sands of Arrakis
-
+# Dune
 A 2D survival platformer set on the desert planet Arrakis. Play as Paul Atreides, navigate deadly sand dunes, avoid sandworms, fend off Harkonnen soldiers, and harvest spice to survive.
 
 Built with **Unity 6.3 LTS** and **C#**.
@@ -21,7 +20,7 @@ Built with **Unity 6.3 LTS** and **C#**.
 | Hold F | Harvest spice at a Spice Collector |
 | Esc | Pause the game |
 
-**Objective:** Locate the Spice Collector, hold F to harvest spice, then return to the Ship to complete the level. Watch your water supply — if it runs out, your health will begin to drain.
+**Objective:** Locate the Spice Collector, hold F to harvest spice, then return to the Ship to complete the level. Watch your water supply > if it runs out, your health will begin to drain.
 
 ---
 
@@ -312,3 +311,5 @@ Pixabay. (2025). *Amurich Atma: Mysterious duduk* [Music]. Pixabay. https://pixa
 Pixabay. (2024). *Film special effects: Sand walk* [Sound effect]. Pixabay. https://pixabay.com/sound-effects/film-special-effects-sand-walk-106366/
 
 Pixabay. (2024). *Walking on rocks 02* [Sound effect]. Pixabay. https://pixabay.com/pt/sound-effects/filme-e-efeitos-especiais-walking-on-rocks-02-55515/
+
+Craftpix. (2021). Pixel art full GUI UI kit — 151 icons [UI Asset]. Unity Asset Store. https://assetstore.unity.com/packages/2d/gui/pixel-art-full-gui-ui-kit-151-icons-205222
