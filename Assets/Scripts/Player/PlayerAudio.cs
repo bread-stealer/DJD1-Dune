@@ -21,6 +21,7 @@ public class PlayerAudio : MonoBehaviour
     [SerializeField] private SFXClip rockFootstepClip;
 
     [Header("Footstep Detection")]
+    [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask sandLayer;
     [SerializeField] private LayerMask rockLayer;
     [SerializeField] private float groundRayDistance = 0.3f;
@@ -65,14 +66,18 @@ public class PlayerAudio : MonoBehaviour
 
     private void HandleFootstep()
     {
-        RaycastHit2D sandHit = Physics2D.Raycast(transform.position, Vector2.down, groundRayDistance, sandLayer);
+        RaycastHit2D sandHit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundRayDistance, sandLayer);
+        Debug.Log($"[Footstep] Sand hit: {sandHit.collider}");
+
         if (sandHit.collider != null)
         {
             AudioManager.Instance?.PlaySFX(sandFootstepClip.clip, sandFootstepClip.volume);
             return;
         }
 
-        RaycastHit2D rockHit = Physics2D.Raycast(transform.position, Vector2.down, groundRayDistance, rockLayer);
+        RaycastHit2D rockHit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundRayDistance, rockLayer);
+        Debug.Log($"[Footstep] Rock hit: {rockHit.collider}");
+
         if (rockHit.collider != null)
             AudioManager.Instance?.PlaySFX(rockFootstepClip.clip, rockFootstepClip.volume);
     }
