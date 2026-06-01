@@ -18262,6 +18262,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1161647172}
   m_CullTransparentMesh: 1
+--- !u!4 &1180746974 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7632579518248877133, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+  m_PrefabInstance: {fileID: 5914500317196535366}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1259497640
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20208,6 +20213,17 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 4508949242300563202, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
   m_PrefabInstance: {fileID: 5914500317196535366}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2106604155 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1542724386618955030, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+  m_PrefabInstance: {fileID: 5914500317196535366}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee3a3dd8521c0041bcf6d323fe105ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimEventBridge
 --- !u!1 &2119544915
 GameObject:
   m_ObjectHideFlags: 0
@@ -20568,6 +20584,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7674256217338328674, guid: 100cbc31278a75f43893bf926a427f6d, type: 3}
+      propertyPath: musicVolume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674256217338328674, guid: 100cbc31278a75f43893bf926a427f6d, type: 3}
       propertyPath: playerHealth
       value: 
       objectReference: {fileID: 5914500317196535370}
@@ -20748,6 +20768,54 @@ PrefabInstance:
       propertyPath: ShapeModule.m_SpriteRenderer
       value: 
       objectReference: {fileID: 2106604153}
+    - target: {fileID: 3304253013076394616, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: jumpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 23f81f663b2b3b7448f112610c8868a5, type: 3}
+    - target: {fileID: 3304253013076394616, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: groundCheck
+      value: 
+      objectReference: {fileID: 1180746974}
+    - target: {fileID: 3304253013076394616, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: jumpClip.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 23f81f663b2b3b7448f112610c8868a5, type: 3}
+    - target: {fileID: 3304253013076394616, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: animEventBridge
+      value: 
+      objectReference: {fileID: 2106604155}
+    - target: {fileID: 3304253013076394616, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: jumpClip.volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3304253013076394616, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: rockLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3304253013076394616, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: sandLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 3304253013076394616, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: rockFootstepClip.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 941ef738a0fe5564cb6d7e5d906cb373, type: 3}
+    - target: {fileID: 3304253013076394616, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: sandFootstepClip.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 957b8abde7e41944293c3a48b863391c, type: 3}
+    - target: {fileID: 3304253013076394616, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: shieldBrokenClip.clip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3304253013076394616, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: rockFootstepClip.volume
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3304253013076394616, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
+      propertyPath: sandFootstepClip.volume
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 4496305112314922510, guid: d1542ac4fec180e4e9b0964157c00128, type: 3}
       propertyPath: maxStamina
       value: 10
