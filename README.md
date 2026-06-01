@@ -1,4 +1,4 @@
-# Dune
+# Dune: Sands of Arrakis
 
 A 2D survival platformer set on the desert planet Arrakis. Play as Paul Atreides, navigate deadly sand dunes, avoid sandworms, fend off Harkonnen soldiers, and harvest spice to survive.
 
@@ -89,7 +89,6 @@ classDiagram
 class AttackData {
     +float Damage
     +bool IsShieldPenetrating
-    +AttackData(float, bool)
 }
 
 class SFXClip {
@@ -98,50 +97,28 @@ class SFXClip {
 }
 
 class EnemyStats {
-    -float maxHealth
-    -float moveSpeed
-    -float damage
-    -float attackRange
-    -float attackCooldown
-    -float detectionRange
-    -LayerMask playerLayer
     +float MaxHealth
     +float MoveSpeed
     +float Damage
     +float AttackRange
     +float AttackCooldown
     +float DetectionRange
-    +LayerMask PlayerLayer
 }
 
 %% ─── PLAYER ────────────────────────────────────────────────────────
 class PlayerController {
-    -float moveSpeed
-    -float airControlFactor
-    -float jumpForce
-    -float jumpCutMultiplier
     +TakeDamage(AttackData) void
-    -HandleMove() void
-    -HandleJump() void
-    -HandleJumpCut() void
 }
 
 class PlayerHealth {
-    -float maxHealth
     +float CurrentHealth
     +float MaxHealth
     +bool IsDead
     +event OnHealthChanged
     +event OnDeath
-    +TakeDamage(float) void
-    +Heal(float) void
 }
 
 class PlayerShield {
-    -float maxStamina
-    -float staminaDrainRate
-    -float immunityWindowDuration
-    -float cooldownDuration
     +bool IsShieldActive
     +float CurrentStamina
     +bool IsOnCooldown
@@ -157,13 +134,9 @@ class PlayerAttack {
     -float lightDamage
     -float heavyDamage
     -float heavyAttackThreshold
-    -void OnAttackHit()
 }
 
 class PlayerWater {
-    -float maxWater
-    -float drainRate
-    -float dehydrationDamage
     +float CurrentWater
     +bool IsDehydrated
     +event OnWaterChanged
@@ -173,101 +146,48 @@ class PlayerWater {
 }
 
 class PlayerAudio {
-    -SFXClip attackClip
-    -SFXClip hitClip
-    -SFXClip jumpClip
-    -SFXClip landClip
-    -SFXClip shieldOnClip
-    -SFXClip shieldOffClip
-    -SFXClip shieldBlockClip
-    -SFXClip shieldBrokenClip
-    -SFXClip sandFootstepClip
-    -SFXClip rockFootstepClip
-    +PlayAttackSFX() void
-    +PlayJumpSFX() void
-    +PlayLandSFX() void
 }
 
 class PlayerHitFlash {
-    -float flashDuration
-    -Color flashColor
 }
 
 class AnimEventBridge {
     +event OnAttackHitEvent
     +event OnFootstepEvent
-    +OnAttackHit() void
-    +OnFootstep() void
 }
 
 %% ─── ENEMY ─────────────────────────────────────────────────────────
 class Enemy {
     <<abstract>>
-    #EnemyStats stats
-    #float currentHealth
-    #bool isDead
     +TakeDamage(float, bool) void
-    #EvaluateState()* void
-    #OnDamaged() void
-    #OnDeath() void
-    #FacePlayer(Transform) void
 }
 
 class Harkonnen {
-    -float heavyDamageMultiplier
-    -float wallCheckDistance
-    -float ledgeCheckDistance
-    -float flipCooldown
-    #EvaluateState() void
-    -Chase() void
-    -Attack() void
-    -Patrol() void
 }
 
 class Sandworm {
-    -float warningDuration
-    -float burstDuration
-    -float disappearDelay
     +bool IsIdle
     +Trigger(Vector3) void
-    #EvaluateState() void
-    -EmergeSequence(Vector3) IEnumerator
 }
 
 class WormHead {
-    -bool _canDamage
     +SetActive(bool) void
 }
 
 class SandwormManager {
     +static Instance
-    -float timeOnSandToTrigger
-    -float cooldownAfterEmerge
-    -PlayerOnSand() bool
-    -PlayerOnSafeGround() bool
-    -TriggerWorm() void
 }
 
 %% ─── AUDIO ─────────────────────────────────────────────────────────
 class AudioManager {
     +static Instance
-    -AudioSource sfxSource
-    -AudioSource musicSource
-    -float musicVolume
     +PlaySFX(AudioClip, float, bool) void
     +PlayMusicWithFadeIn(AudioClip) void
     +FadeOutMusic() void
-    +SetMusicVolume(float) void
-    +SetSFXVolume(float) void
 }
 
 %% ─── CAMERA ────────────────────────────────────────────────────────
 class CameraSystem {
-    -float trapWidth
-    -float trapUp
-    -float trapDown
-    -float lookaheadAmount
-    -float followSpeed
     +SetShakeOffset(Vector3) void
 }
 
@@ -284,18 +204,12 @@ class SpiceManager {
 }
 
 class SpiceExtractor {
-    -int spiceAmount
-    -float harvestDuration
-    -KeyCode harvestKey
 }
 
 class WaterCollectable {
-    -float waterAmount
 }
 
 class WinDoor {
-    -string lockedMessage
-    -string openMessage
 }
 
 class HitStop {
@@ -314,23 +228,15 @@ class DamageNumber {
 
 %% ─── UI ────────────────────────────────────────────────────────────
 class HealthBarUI {
-    -float smoothSpeed
-    -float ghostDelay
 }
 
 class ShieldUI {
-    -float smoothSpeed
-    -float ghostDelay
-    -float pulseSpeed
 }
 
 class WaterGaugeUI {
-    -Color normalColor
-    -Color dehydratedColor
 }
 
 class SpiceUI {
-    -UpdateDisplay(int) void
 }
 
 class GameOverUI {
@@ -341,8 +247,6 @@ class GameOverUI {
 class WinUI {
     +static event OnWin
     +ShowWinScreen() void
-    +OnNextLevelPressed() void
-    +OnMainMenuPressed() void
 }
 
 %% ─── RELATIONSHIPS ──────────────────────────────────────────────────
@@ -352,24 +256,23 @@ Enemy <|-- Harkonnen
 Enemy <|-- Sandworm
 
 %% Composition
-PlayerController *-- PlayerShield
-PlayerController *-- PlayerHealth
-PlayerController *-- PlayerWater
-PlayerController *-- PlayerAttack
-PlayerController *-- PlayerAudio
-PlayerController *-- PlayerHitFlash
-Sandworm *-- WormHead
+PlayerController "1" *-- "1" PlayerShield
+PlayerController "1" *-- "1" PlayerHealth
+PlayerController "1" *-- "1" PlayerWater
+PlayerController "1" *-- "1" PlayerAttack
+PlayerController "1" *-- "1" PlayerAudio
+PlayerController "1" *-- "1" PlayerHitFlash
+Sandworm "1" *-- "1" WormHead
 
 %% Aggregation
-PlayerAttack o-- AnimEventBridge
-PlayerAudio o-- AnimEventBridge
-Enemy o-- EnemyStats
-SandwormManager o-- Sandworm
-CameraShake o-- CameraSystem
+PlayerAttack "1" o-- "1" AnimEventBridge
+PlayerAudio "1" o-- "1" AnimEventBridge
+Enemy "*" o-- "1" EnemyStats
+SandwormManager "1" o-- "1" Sandworm
+CameraShake "1" o-- "1" CameraSystem
 
 %% Dependency
 PlayerController ..> AttackData
-PlayerController ..> CameraShake
 PlayerController ..> HitStop
 PlayerAttack ..> AttackData
 PlayerAttack ..> Enemy
@@ -382,7 +285,7 @@ SpiceExtractor ..> SpiceManager
 WinDoor ..> SpiceManager
 WinDoor ..> WinUI
 WaterCollectable ..> PlayerWater
-DamageNumberSpawner ..> DamageNumber
+DamageNumberSpawner "1" ..> "*" DamageNumber
 AudioManager ..> PlayerHealth
 AudioManager ..> WinUI
 HealthBarUI ..> PlayerHealth
