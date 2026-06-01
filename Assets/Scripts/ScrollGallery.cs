@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class ScrollGallery : MonoBehaviour
         public RectTransform rowContainer;
         public float speed = 50f;
         public bool movesLeft = true;
+        [HideInInspector] public List<RectTransform> imageRects = new List<RectTransform>();
     }
 
     [Header("Rows")]
@@ -20,48 +22,110 @@ public class ScrollGallery : MonoBehaviour
     [SerializeField] private float imageHeight = 180f;
     [SerializeField] private float imagePadding = 20f;
 
-    private float _totalRowWidth;
+    private float _screenWidth;
+    private float _slotWidth;
 
     private void Awake()
     {
-        _totalRowWidth = (imageWidth + imagePadding) * images.Length;
+        _screenWidth = GetComponent<RectTransform>().rect.width;
+        _slotWidth = imageWidth + imagePadding;
         BuildRows();
     }
 
     private void BuildRows()
     {
+        int imageCount = Mathf.CeilToInt(_screenWidth / _slotWidth) + 2;
+
         foreach (GalleryRow row in rows)
         {
-            // Duplicate the images to create a seamless loop
-            for (int i = 0; i < images.Length * 2; i++)
+            row.imageRects.Clear();
+
+            for (int i = 0; i < imageCount; i++)
             {
                 Sprite sprite = images[i % images.Length];
-                GameObject imageObject = new GameObject($"Image_{i}", typeof(RectTransform), typeof(Image));
-                imageObject.transform.SetParent(row.rowContainer, false);
-
-                RectTransform rect = imageObject.GetComponent<RectTransform>();
-                rect.sizeDelta = new Vector2(imageWidth, imageHeight);
-                rect.anchoredPosition = new Vector2(i * (imageWidth + imagePadding), 0f);
-
-                Image img = imageObject.GetComponent<Image>();
-                img.sprite = sprite;
-                img.preserveAspect = true;
+                RectTransform rect = CreateImage(row.rowContainer, sprite);
+                rect.anchoredPosition = new Vector2(i * _slotWidth, 0f);
+                row.imageRects.Add(rect);
             }
         }
+    }
+
+    private RectTransform CreateImage(RectTransform parent, Sprite sprite)
+    {
+        GameObject imageObject = new GameObject("GalleryImage", typeof(RectTransform), typeof(Image));
+        imageObject.transform.SetParent(parent, false);
+
+        RectTransform rect = imageObject.GetComponent<RectTransform>();
+        rect.sizeDelta = new Vector2(imageWidth, imageHeight);
+        rect.anchorMin = new Vector2(0f, 0.5f);
+        rect.anchorMax = new Vector2(0f, 0.5f);
+        rect.pivot = new Vector2(0f, 0.5f);
+
+        Image img = imageObject.GetComponent<Image>();
+        img.sprite = sprite;
+        img.preserveAspect = true;
+
+        return rect;
     }
 
     private void Update()
     {
         foreach (GalleryRow row in rows)
         {
+            float delta = row.speed * Time.deltaTime;
             float direction = row.movesLeft ? -1f : 1f;
-            row.rowContainer.anchoredPosition += new Vector2(direction * row.speed * Time.deltaTime, 0f);
 
-            // Reset position to create seamless loop
-            if (row.movesLeft && row.rowContainer.anchoredPosition.x <= -_totalRowWidth)
-                row.rowContainer.anchoredPosition = new Vector2(0f, row.rowContainer.anchoredPosition.y);
-            else if (!row.movesLeft && row.rowContainer.anchoredPosition.x >= _totalRowWidth)
-                row.rowContainer.anchoredPosition = new Vector2(0f, row.rowContainer.anchoredPosition.y);
+            foreach (RectTransform rect in row.imageRects)
+                rect.anchoredPosition += new Vector2(direction * delta, 0f);
+
+            if (row.movesLeft)
+                RecycleLeft(row);
+            else
+                RecycleRight(row);
         }
+    }
+
+    private void RecycleLeft(GalleryRow row)
+    {
+        // Find the leftmost image that has gone off screen and move it to the right
+        RectTransform leftmost = null;
+        float minX = float.MaxValue;
+        float maxX = float.MinValue;
+
+        foreach (RectTransform rect in row.imageRects)
+        {
+            if (rect.anchoredPosition.x < minX)
+            {
+                minX = rect.anchoredPosition.x;
+                leftmost = rect;
+            }
+            if (rect.anchoredPosition.x > maxX)
+                maxX = rect.anchoredPosition.x;
+        }
+
+        if (leftmost != null && minX < -(imageWidth + imagePadding))
+            leftmost.anchoredPosition = new Vector2(maxX + _slotWidth, 0f);
+    }
+
+    private void RecycleRight(GalleryRow row)
+    {
+        // Find the rightmost image that has gone off screen and move it to the left
+        RectTransform rightmost = null;
+        float maxX = float.MinValue;
+        float minX = float.MaxValue;
+
+        foreach (RectTransform rect in row.imageRects)
+        {
+            if (rect.anchoredPosition.x > maxX)
+            {
+                maxX = rect.anchoredPosition.x;
+                rightmost = rect;
+            }
+            if (rect.anchoredPosition.x < minX)
+                minX = rect.anchoredPosition.x;
+        }
+
+        if (rightmost != null && maxX > _screenWidth + imageWidth + imagePadding)
+            rightmost.anchoredPosition = new Vector2(minX - _slotWidth, 0f);
     }
 }
