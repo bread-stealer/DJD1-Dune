@@ -5,6 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerController))]
 public class PlayerShield : MonoBehaviour
 {
+    [Header("Shield Sprite")]
+    [SerializeField] private SpriteRenderer shieldSprite;
+    [SerializeField] private Color shieldColor = new Color(0.5f, 0.8f, 1f, 0.4f);
+    
     [Header("Shield Settings")]
     [SerializeField] private float maxStamina = 5f;
     [SerializeField] private float staminaDrainRate = 1f;
@@ -43,6 +47,12 @@ public class PlayerShield : MonoBehaviour
 
         if (playerSpriteRenderer != null)
             _originalColor = playerSpriteRenderer.color;
+
+        if (shieldSprite != null)
+        {
+            shieldSprite.color = shieldColor;
+            shieldSprite.enabled = false;
+        }
     }
 
     private void Update()
@@ -76,6 +86,8 @@ public class PlayerShield : MonoBehaviour
         StartCoroutine(ImmunityWindowRoutine());
         PlayParticles(activationParticles);
         PlayAura(true);
+        if (shieldSprite != null)
+            shieldSprite.enabled = true;
         OnShieldActivated?.Invoke();
     }
 
@@ -84,6 +96,8 @@ public class PlayerShield : MonoBehaviour
         IsShieldActive = false;
         _isImmune = false;
         PlayAura(false);
+        if (shieldSprite != null)
+            shieldSprite.enabled = false;
         OnShieldDeactivated?.Invoke();
     }
 

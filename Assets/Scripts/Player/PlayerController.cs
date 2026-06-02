@@ -23,14 +23,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float shakeDuration = 0.15f;
     [SerializeField] private float hitStopDuration = 0.05f;
 
+    [Header("Shield Sprite")]
+    [SerializeField] private Animator shieldAnimator;
+
     private Rigidbody2D _rb;
     private Animator _animator;
     private PlayerShield _shield;
     private PlayerHealth _health;
     private PlayerAudio _playerAudio;
-
-    private bool _isJumping;
-    private bool _wasGrounded;
+    private float _speedMultiplier = 1f;
 
     // Cached animator parameter hashes
     private static readonly int SpeedHash = Animator.StringToHash("Speed");
@@ -57,7 +58,7 @@ public class PlayerController : MonoBehaviour
     private void HandleMove()
     {
         float horizontal = Input.GetAxis("Horizontal");
-        float speed = IsGrounded() ? moveSpeed : moveSpeed * airControlFactor;
+        float speed = IsGrounded() ? moveSpeed * _speedMultiplier : moveSpeed * airControlFactor * _speedMultiplier;
         _rb.linearVelocity = new Vector2(horizontal * speed, _rb.linearVelocity.y);
 
         if (horizontal != 0f)
@@ -95,11 +96,22 @@ public class PlayerController : MonoBehaviour
     {
         _animator.SetFloat(SpeedHash, Mathf.Abs(_rb.linearVelocity.x));
         _animator.SetBool(IsGroundedHash, IsGrounded());
+
+        if (shieldAnimator != null)
+        {
+            shieldAnimator.SetFloat(SpeedHash, Mathf.Abs(_rb.linearVelocity.x));
+            shieldAnimator.SetBool(IsGroundedHash, IsGrounded());
+        }
     }
 
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+    }
+
+    public void SetSpeedMultiplier(float multiplier)
+    {
+        _speedMultiplier = multiplier;
     }
 
     public void TakeDamage(AttackData attack)
@@ -116,6 +128,9 @@ public class PlayerController : MonoBehaviour
         if (HitStop.Instance != null)
             HitStop.Instance.Stop(hitStopDuration);
     }
+
+    private bool _isJumping;
+    private bool _wasGrounded;
 
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
