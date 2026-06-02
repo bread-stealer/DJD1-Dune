@@ -18,13 +18,14 @@ public class WinUI : MonoBehaviour
 
     private void OnValidate()
     {
+    # if UNITY_EDITOR
         nextLevelScene?.OnValidate();
         mainMenuScene?.OnValidate();
+    #endif
     }
 
     private void Start()
     {
-        // Panel starts hidden
         winPanel.SetActive(false);
     }
 
@@ -32,16 +33,14 @@ public class WinUI : MonoBehaviour
     {
         OnWin?.Invoke();
         winPanel.SetActive(true);
+        PostProcessingTransition.Instance?.TransitionToMenu();
         Time.timeScale = 0f;
         StartCoroutine(SelectFirstButton());
     }
 
     private IEnumerator SelectFirstButton()
     {
-        // Wait a real frame for the panel to fully enable
         yield return new WaitForSecondsRealtime(0.1f);
-
-        // Reset to null first to force the EventSystem to re-evaluate
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(firstSelectedButton.gameObject);
     }
@@ -50,13 +49,18 @@ public class WinUI : MonoBehaviour
     public void OnNextLevelPressed()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(nextLevelScene.SceneName);
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.FadeOutAndLoad(nextLevelScene.SceneName);
+        else
+            SceneManager.LoadScene(nextLevelScene.SceneName);
     }
 
-    // Called by Main Menu button
     public void OnMainMenuPressed()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(mainMenuScene.SceneName);
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.FadeOutAndLoad(mainMenuScene.SceneName);
+        else
+            SceneManager.LoadScene(mainMenuScene.SceneName);
     }
 }

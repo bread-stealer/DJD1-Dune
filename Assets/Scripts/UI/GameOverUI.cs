@@ -23,13 +23,14 @@ public class GameOverUI : MonoBehaviour
 
     private void OnValidate()
     {
+    #if UNITY_EDITOR
         gameScene?.OnValidate();
         mainMenuScene?.OnValidate();
+    #endif
     }
 
     private void Start()
     {
-        // Panel starts hidden
         gameOverPanel.SetActive(false);
 
         if (_playerHealth != null)
@@ -53,13 +54,14 @@ public class GameOverUI : MonoBehaviour
     {
         // Use realtime so delay works regardless of timescale
         yield return new WaitForSecondsRealtime(gameOverDelay);
+
+        PostProcessingTransition.Instance?.TransitionToMenu();
+        
         gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
 
         // Wait a real frame for the panel to fully enable
         yield return new WaitForSecondsRealtime(0.1f);
-
-        // Reset to null first to force the EventSystem to re-evaluate
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(firstSelectedButton.gameObject);
     }
@@ -67,15 +69,19 @@ public class GameOverUI : MonoBehaviour
     // Called by Restart button
     public void OnRestartPressed()
     {
-        // Always restore time before loading
         Time.timeScale = 1f;
-        SceneManager.LoadScene(gameScene.SceneName);
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.FadeOutAndLoad(gameScene.SceneName);
+        else
+            SceneManager.LoadScene(gameScene.SceneName);
     }
 
-    // Called by Main Menu button
     public void OnMainMenuPressed()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(mainMenuScene.SceneName);
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.FadeOutAndLoad(mainMenuScene.SceneName);
+        else
+            SceneManager.LoadScene(mainMenuScene.SceneName);
     }
 }

@@ -10,16 +10,28 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject creditsPanel;
 
+    private void Awake()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
     private void OnValidate()
     {
+    #if UNITY_EDITOR
         gameScene?.OnValidate();
+    #endif
     }
 
     public void OnPlayPressed()
     {
-        SceneManager.LoadScene(gameScene.SceneName);
-    }
+        Debug.Log($"[MainMenuUI] Trying to load scene: '{gameScene.SceneName}'");
 
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.FadeOutAndLoad(gameScene.SceneName);
+        else
+            SceneManager.LoadScene(gameScene.SceneName);
+    }
     public void OnSettingsPressed()
     {
         settingsPanel.SetActive(true);
