@@ -5053,7 +5053,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 1.2346281
 --- !u!114 &8808953428932010974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5189,9 +5189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sandworm
   visualRoot: {fileID: 8832814762049245214}
-  triggerRadius: 10.2
-  emergeDelay: 5
-  escapeRadius: 11.2
+  stats: {fileID: 0}
   warningDuration: 2
   burstDuration: 2
   disappearDelay: 3
@@ -5199,6 +5197,4 @@ MonoBehaviour:
   wormSprite: {fileID: 5710614442693664818}
   sandParticles: {fileID: 961968830778650031}
   cameraShake: {fileID: 0}
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 128
+  wormHead: {fileID: 0}
