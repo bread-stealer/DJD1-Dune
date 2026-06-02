@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   maxHealth: 80
   moveSpeed: 3
-  damage: 15
-  attackRange: 1.5
+  damage: 10
+  attackRange: 1
   attackCooldown: 1
-  detectionRange: 6
+  detectionRange: 3
   playerLayer:
     serializedVersion: 2
     m_Bits: 128

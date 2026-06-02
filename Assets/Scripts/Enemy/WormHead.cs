@@ -7,25 +7,27 @@ public class WormHead : MonoBehaviour
     public void SetActive(bool active)
     {
         _canDamage = active;
-        Debug.Log($"[WormHead] canDamage set to {active}");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log($"[WormHead] Trigger hit by: {other.gameObject.name} on layer {other.gameObject.layer}");
         if (!_canDamage) return;
 
+        // Kill player
         PlayerController player = other.GetComponent<PlayerController>();
-        if (player == null) return;
+        if (player != null)
+        {
+            PlayerHealth health = other.GetComponent<PlayerHealth>();
+            if (health != null)
+            {
+                player.TakeDamage(new AttackData(health.MaxHealth, isShieldPenetrating: true));
+            }
+            return;
+        }
 
-        PlayerHealth health = other.GetComponent<PlayerHealth>();
-        if (health == null) return;
-
-        var wormAttack = new AttackData(
-            damage: health.MaxHealth,
-            isShieldPenetrating: true
-        );
-        player.TakeDamage(wormAttack);
-        Debug.Log("[WormHead] Player devoured!");
+        // Kill Harkonnen
+        Enemy enemy = other.GetComponentInParent<Enemy>();
+        if (enemy != null)
+            enemy.TakeDamage(float.MaxValue);
     }
 }

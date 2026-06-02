@@ -43,11 +43,12 @@ public abstract class Enemy : MonoBehaviour
     {
         if (isDead) return;
 
-        currentHealth -= amount;
+        float actualDamage = Mathf.Min(amount, currentHealth);
+        currentHealth -= actualDamage;
         OnDamaged();
 
         if (DamageNumberSpawner.Instance != null)
-            DamageNumberSpawner.Instance.Spawn(amount, isHeavy, transform.position);
+            DamageNumberSpawner.Instance.Spawn(actualDamage, isHeavy, transform.position);
 
         if (currentHealth <= 0f)
             Die();

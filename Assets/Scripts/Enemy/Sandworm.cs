@@ -15,6 +15,7 @@ public class Sandworm : Enemy
     [SerializeField] private CameraShake cameraShake;
     [SerializeField] private WormHead wormHead;
 
+    public float WarningDuration => warningDuration;
     private enum WormState { Idle, Warning, Emerging, Underground }
     private WormState _state = WormState.Idle;
 

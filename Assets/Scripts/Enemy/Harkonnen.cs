@@ -20,6 +20,7 @@ public class Harkonnen : Enemy
     private float lastAttackTime;
     private float lastFlipTime;
     private float patrolDirection = 1f;
+    private float _speedMultiplier = 1f;
 
     // Cached animator parameter hashes
     private static readonly int IsWalkingHash = Animator.StringToHash("IsWalking");
@@ -37,6 +38,11 @@ public class Harkonnen : Enemy
         }
 
         player = _playerController.transform;
+    }
+
+    public void SetSpeedMultiplier(float multiplier)
+    {
+        _speedMultiplier = multiplier;
     }
 
     protected override void EvaluateState()
@@ -58,7 +64,7 @@ public class Harkonnen : Enemy
         FacePlayer(player);
 
         float direction = Mathf.Sign(player.position.x - transform.position.x);
-        rb.linearVelocity = new Vector2(direction * stats.MoveSpeed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(direction * stats.MoveSpeed * _speedMultiplier, rb.linearVelocity.y);
 
         if (animator != null)
         {
@@ -122,7 +128,7 @@ public class Harkonnen : Enemy
             groundLayer
         );
 
-        // Flip if wall detected or ledge ahead is gone, with cooldown to prevent rapid flipping
+        // Flip if wall detected or ledge ahead is gone
         bool shouldFlip = wallHit.collider != null || ledgeHit.collider == null;
         if (shouldFlip && Time.time - lastFlipTime >= flipCooldown)
         {
@@ -130,7 +136,7 @@ public class Harkonnen : Enemy
             lastFlipTime = Time.time;
         }
 
-        rb.linearVelocity = new Vector2(patrolDirection * stats.MoveSpeed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(patrolDirection * stats.MoveSpeed * _speedMultiplier, rb.linearVelocity.y);
         visualRoot.localScale = new Vector3(patrolDirection, 1f, 1f);
     }
 

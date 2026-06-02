@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SandwormManager : MonoBehaviour
@@ -6,7 +7,10 @@ public class SandwormManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Sandworm sandworm;
-    [SerializeField] private Transform player;
+    [SerializeField] private PlayerController playerController;
+
+    [Header("Enemies")]
+    [SerializeField] private Harkonnen[] harkonnenEnemies;
 
     [Header("Detection")]
     [SerializeField] private LayerMask sandGroundLayer;
@@ -14,10 +18,19 @@ public class SandwormManager : MonoBehaviour
     [SerializeField] private float groundCheckDistance = 0.5f;
 
     [Header("Timing")]
-    [SerializeField] private float timeOnSandToTrigger = 5f;
+    [SerializeField] private float timeMovingToTrigger = 4f;
+    [SerializeField] private float stillDrainRate = 1.5f;
     [SerializeField] private float cooldownAfterEmerge = 8f;
 
-    private float _timeOnSand;
+    [Header("Movement Threshold")]
+    [SerializeField] private float movementThreshold = 0.1f;
+
+    [Header("Warning Slowdown")]
+    [SerializeField] private float slowdownMultiplier = 0.3f;
+
+    private Transform _player;
+    private Rigidbody2D _playerRb;
+    private float _dangerTimer;
     private float _cooldownTimer;
     private bool _isOnCooldown;
 
@@ -31,49 +44,137 @@ public class SandwormManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        if (playerController == null)
+        {
+            Debug.LogError("[SandwormManager] PlayerController reference is not assigned.", this);
+            enabled = false;
+            return;
+        }
+
+        _player = playerController.transform;
+        _playerRb = _player.GetComponent<Rigidbody2D>();
+    }
+
     private void Update()
     {
-        if (sandworm == null || player == null) return;
+        if (sandworm == null || _player == null) return;
+
         if (_isOnCooldown)
         {
             TickCooldown();
             return;
         }
 
-        if (PlayerOnSand() && !PlayerOnSafeGround())
-        {
-            _timeOnSand += Time.deltaTime;
+        CheckHarkonnenOnSand();
 
-            if (_timeOnSand >= timeOnSandToTrigger)
+        if (PlayerOnSafeGround())
+        {
+            _dangerTimer = 0f;
+            return;
+        }
+
+        if (!PlayerOnSand())
+        {
+            _dangerTimer = 0f;
+            return;
+        }
+
+        if (PlayerIsMoving())
+        {
+            _dangerTimer += Time.deltaTime;
+
+            if (_dangerTimer >= timeMovingToTrigger)
             {
-                TriggerWorm();
-                _timeOnSand = 0f;
+                TriggerWorm(_player.position);
+                _dangerTimer = 0f;
             }
         }
         else
         {
-            _timeOnSand = 0f;
+            _dangerTimer = Mathf.Max(0f, _dangerTimer - stillDrainRate * Time.deltaTime);
         }
     }
 
-    private void TriggerWorm()
+    private void CheckHarkonnenOnSand()
     {
-        sandworm.Trigger(player.position);
-        _isOnCooldown = true;
-        _cooldownTimer = cooldownAfterEmerge;
+        if (!sandworm.IsIdle) return;
+
+        foreach (Harkonnen enemy in harkonnenEnemies)
+        {
+            if (enemy == null) continue;
+
+            if (EnemyOnSand(enemy.transform) && !EnemyOnSafeGround(enemy.transform))
+            {
+                TriggerWorm(enemy.transform.position);
+                return;
+            }
+        }
     }
 
-    private void TickCooldown()
+    private bool EnemyOnSand(Transform enemy)
     {
-        _cooldownTimer -= Time.deltaTime;
-        if (_cooldownTimer <= 0f)
-            _isOnCooldown = false;
+        RaycastHit2D hit = Physics2D.Raycast(
+            enemy.position + Vector3.up * 0.1f,
+            Vector2.down,
+            groundCheckDistance + 0.1f,
+            sandGroundLayer
+        );
+        return hit.collider != null;
+    }
+
+    private bool EnemyOnSafeGround(Transform enemy)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(
+            enemy.position + Vector3.up * 0.1f,
+            Vector2.down,
+            groundCheckDistance + 0.1f,
+            safeGroundLayer
+        );
+        return hit.collider != null;
+    }
+
+    private bool PlayerIsMoving()
+    {
+        if (_playerRb == null) return false;
+        return Mathf.Abs(_playerRb.linearVelocity.x) > movementThreshold;
+    }
+
+    private void TriggerWorm(Vector3 position)
+    {
+        if (!sandworm.IsIdle) return;
+        sandworm.Trigger(position);
+        _isOnCooldown = true;
+        _cooldownTimer = cooldownAfterEmerge;
+        StartCoroutine(SlowdownRoutine());
+    }
+
+    private IEnumerator SlowdownRoutine()
+    {
+        // Apply slowdown during warning phase
+        playerController.SetSpeedMultiplier(slowdownMultiplier);
+        foreach (Harkonnen enemy in harkonnenEnemies)
+        {
+            if (enemy != null)
+                enemy.SetSpeedMultiplier(slowdownMultiplier);
+        }
+
+        yield return new WaitForSeconds(sandworm.WarningDuration);
+
+        // Restore speed after warning ends
+        playerController.SetSpeedMultiplier(1f);
+        foreach (Harkonnen enemy in harkonnenEnemies)
+        {
+            if (enemy != null)
+                enemy.SetSpeedMultiplier(1f);
+        }
     }
 
     private bool PlayerOnSand()
     {
         RaycastHit2D hit = Physics2D.Raycast(
-            player.position + Vector3.up * 0.1f,
+            _player.position + Vector3.up * 0.1f,
             Vector2.down,
             groundCheckDistance + 0.1f,
             sandGroundLayer
@@ -84,11 +185,18 @@ public class SandwormManager : MonoBehaviour
     private bool PlayerOnSafeGround()
     {
         RaycastHit2D hit = Physics2D.Raycast(
-            player.position + Vector3.up * 0.1f,
+            _player.position + Vector3.up * 0.1f,
             Vector2.down,
             groundCheckDistance + 0.1f,
             safeGroundLayer
         );
         return hit.collider != null;
+    }
+
+    private void TickCooldown()
+    {
+        _cooldownTimer -= Time.deltaTime;
+        if (_cooldownTimer <= 0f)
+            _isOnCooldown = false;
     }
 }
