@@ -1,0 +1,689 @@
+fileFormatVersion: 2
+guid: ea969b56527182c489660368d9d6ec98
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5229602135048535458
+    second: logotipo-geral-horizontal-branco-png_0
+  - first:
+      213: 3940455684746607548
+    second: logotipo-geral-horizontal-branco-png_1
+  - first:
+      213: 2720746095264335533
+    second: logotipo-geral-horizontal-branco-png_2
+  - first:
+      213: 474407342796342302
+    second: logotipo-geral-horizontal-branco-png_3
+  - first:
+      213: 3896205505402368577
+    second: logotipo-geral-horizontal-branco-png_4
+  - first:
+      213: -1623028281739239841
+    second: logotipo-geral-horizontal-branco-png_5
+  - first:
+      213: -5346914158140823217
+    second: logotipo-geral-horizontal-branco-png_6
+  - first:
+      213: 7393264552191286585
+    second: logotipo-geral-horizontal-branco-png_7
+  - first:
+      213: -5944022420086065586
+    second: logotipo-geral-horizontal-branco-png_8
+  - first:
+      213: 7845118528148042549
+    second: logotipo-geral-horizontal-branco-png_9
+  - first:
+      213: 1932706175503607598
+    second: logotipo-geral-horizontal-branco-png_10
+  - first:
+      213: 6879833694382087180
+    second: logotipo-geral-horizontal-branco-png_11
+  - first:
+      213: 2442677482083485508
+    second: logotipo-geral-horizontal-branco-png_12
+  - first:
+      213: -2217043821344686708
+    second: logotipo-geral-horizontal-branco-png_13
+  - first:
+      213: 2538611262802439757
+    second: logotipo-geral-horizontal-branco-png_14
+  - first:
+      213: -5921929587593589768
+    second: logotipo-geral-horizontal-branco-png_15
+  - first:
+      213: -2290259955206513904
+    second: logotipo-geral-horizontal-branco-png_16
+  - first:
+      213: -5942491997097809985
+    second: logotipo-geral-horizontal-branco-png_17
+  - first:
+      213: 3344692429197849558
+    second: logotipo-geral-horizontal-branco-png_18
+  - first:
+      213: -9185307218183357347
+    second: logotipo-geral-horizontal-branco-png_19
+  - first:
+      213: 5216227877882984037
+    second: logotipo-geral-horizontal-branco-png_20
+  - first:
+      213: 7863629434450274538
+    second: logotipo-geral-horizontal-branco-png_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_0
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 195
+        width: 684
+        height: 684
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e52cec7d098bc67b0800000000000000
+      internalID: -5229602135048535458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_1
+      rect:
+        serializedVersion: 2
+        x: 1210
+        y: 556
+        width: 102
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbb7d7e519f4fa630800000000000000
+      internalID: 3940455684746607548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_2
+      rect:
+        serializedVersion: 2
+        x: 1398
+        y: 556
+        width: 107
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da60344982802c520800000000000000
+      internalID: 2720746095264335533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_3
+      rect:
+        serializedVersion: 2
+        x: 1591
+        y: 558
+        width: 44
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e14863af6fe659600800000000000000
+      internalID: 474407342796342302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_4
+      rect:
+        serializedVersion: 2
+        x: 1720
+        y: 556
+        width: 102
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 142fd61a34a121630800000000000000
+      internalID: 3896205505402368577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_5
+      rect:
+        serializedVersion: 2
+        x: 1907
+        y: 558
+        width: 81
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5e158e7068d979e0800000000000000
+      internalID: -1623028281739239841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_6
+      rect:
+        serializedVersion: 2
+        x: 2078
+        y: 556
+        width: 91
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f49628ff6e1fbc5b0800000000000000
+      internalID: -5346914158140823217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_7
+      rect:
+        serializedVersion: 2
+        x: 2256
+        y: 556
+        width: 68
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93d59d360f62a9660800000000000000
+      internalID: 7393264552191286585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_8
+      rect:
+        serializedVersion: 2
+        x: 2414
+        y: 558
+        width: 44
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e46ffc90a17928da0800000000000000
+      internalID: -5944022420086065586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_9
+      rect:
+        serializedVersion: 2
+        x: 2546
+        y: 558
+        width: 101
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53379137cb57fdc60800000000000000
+      internalID: 7845118528148042549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_10
+      rect:
+        serializedVersion: 2
+        x: 2737
+        y: 558
+        width: 107
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e27a816d60a52da10800000000000000
+      internalID: 1932706175503607598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_11
+      rect:
+        serializedVersion: 2
+        x: 2931
+        y: 558
+        width: 101
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0c586b4b441a7f50800000000000000
+      internalID: 6879833694382087180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_12
+      rect:
+        serializedVersion: 2
+        x: 3123
+        y: 558
+        width: 81
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4478e646a3226e120800000000000000
+      internalID: 2442677482083485508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_13
+      rect:
+        serializedVersion: 2
+        x: 1986
+        y: 451
+        width: 78
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8d7641146a7b31e0800000000000000
+      internalID: -2217043821344686708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_14
+      rect:
+        serializedVersion: 2
+        x: 1209
+        y: 191
+        width: 186
+        height: 244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4e252e4e75fa3320800000000000000
+      internalID: 2538611262802439757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_15
+      rect:
+        serializedVersion: 2
+        x: 1425
+        y: 188
+        width: 245
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fbcb927a6411dda0800000000000000
+      internalID: -5921929587593589768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_16
+      rect:
+        serializedVersion: 2
+        x: 1701
+        y: 188
+        width: 161
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01b1d9e74bc5730e0800000000000000
+      internalID: -2290259955206513904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_17
+      rect:
+        serializedVersion: 2
+        x: 1908
+        y: 188
+        width: 237
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb722686307088da0800000000000000
+      internalID: -5942491997097809985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_18
+      rect:
+        serializedVersion: 2
+        x: 2180
+        y: 191
+        width: 174
+        height: 245
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d3b64d1b0cba6e20800000000000000
+      internalID: 3344692429197849558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_19
+      rect:
+        serializedVersion: 2
+        x: 2391
+        y: 188
+        width: 238
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5c795b30cb378080800000000000000
+      internalID: -9185307218183357347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_20
+      rect:
+        serializedVersion: 2
+        x: 2665
+        y: 188
+        width: 258
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56674b04e93c36840800000000000000
+      internalID: 5216227877882984037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logotipo-geral-horizontal-branco-png_21
+      rect:
+        serializedVersion: 2
+        x: 2945
+        y: 191
+        width: 259
+        height: 248
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae8e6bdae49312d60800000000000000
+      internalID: 7863629434450274538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      logotipo-geral-horizontal-branco-png_0: -5229602135048535458
+      logotipo-geral-horizontal-branco-png_1: 3940455684746607548
+      logotipo-geral-horizontal-branco-png_10: 1932706175503607598
+      logotipo-geral-horizontal-branco-png_11: 6879833694382087180
+      logotipo-geral-horizontal-branco-png_12: 2442677482083485508
+      logotipo-geral-horizontal-branco-png_13: -2217043821344686708
+      logotipo-geral-horizontal-branco-png_14: 2538611262802439757
+      logotipo-geral-horizontal-branco-png_15: -5921929587593589768
+      logotipo-geral-horizontal-branco-png_16: -2290259955206513904
+      logotipo-geral-horizontal-branco-png_17: -5942491997097809985
+      logotipo-geral-horizontal-branco-png_18: 3344692429197849558
+      logotipo-geral-horizontal-branco-png_19: -9185307218183357347
+      logotipo-geral-horizontal-branco-png_2: 2720746095264335533
+      logotipo-geral-horizontal-branco-png_20: 5216227877882984037
+      logotipo-geral-horizontal-branco-png_21: 7863629434450274538
+      logotipo-geral-horizontal-branco-png_3: 474407342796342302
+      logotipo-geral-horizontal-branco-png_4: 3896205505402368577
+      logotipo-geral-horizontal-branco-png_5: -1623028281739239841
+      logotipo-geral-horizontal-branco-png_6: -5346914158140823217
+      logotipo-geral-horizontal-branco-png_7: 7393264552191286585
+      logotipo-geral-horizontal-branco-png_8: -5944022420086065586
+      logotipo-geral-horizontal-branco-png_9: 7845118528148042549
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
